@@ -25,6 +25,12 @@ service2.row('🏠 Перейти на главную')
 def welcome(message):
     bot.send_message(message.chat.id, ('👋🏽 Добро пожаловать, *' + message.from_user.first_name + '.*'), reply_markup=service, parse_mode='Markdown')
     
+def btcsmenu(message):
+    service3 = telebot.types.ReplyKeyboardMarkup(True)
+    service3.row('🤖 Chatex Bot', '🤖 BTC Banker')
+    bot.send_message(message.chat.id, "🤖* BTCVoucherGen 2.0:* Генератор BTC чеков. Скрипт генерирует ссылки для обнала BTC чеков в Telegram ботах.\n\n❗️ Выберите нужный вам бот и нажмите на кнопку для генерации ссылки.\n👤 По всем вопросам: @resilents", parse_mode='Markdown', reply_markup=service3)
+
+    
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):
     if message.text == "📊 Статистика":
@@ -54,10 +60,4 @@ def handle_text(message):
 
 
 
-@bot.message_handler(commands=['btcvouchergen'])
-def welcome(message):
-    service3 = telebot.types.ReplyKeyboardMarkup(True)
-    service3.row('🤖 Chatex Bot', '🤖 BTC Banker')
-    bot.send_message(message.chat.id, "🤖* BTCVoucherGen 2.0:* Генератор BTC чеков. Скрипт генерирует ссылки для обнала BTC чеков в Telegram ботах.\n\n❗️ Выберите нужный вам бот и нажмите на кнопку для генерации ссылки.\n👤 По всем вопросам: @resilents", parse_mode='Markdown', reply_markup=service3)
-  
 bot.polling(none_stop=True)
