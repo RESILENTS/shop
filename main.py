@@ -5,6 +5,7 @@ import time
 import requests
 import os
 import Functions
+from SimpleQIWI import *
 
 token = '1543845399:AAGMq9rrQW7xSvgAPnXUjpjBNVfw6G1E9HA'
 bot = telebot.TeleBot(token)
