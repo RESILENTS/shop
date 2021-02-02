@@ -7,15 +7,15 @@ import os
 import random
 import string
 
-TOKEN = "Тут свой токен"
+TOKEN = "1543845399:AAGMq9rrQW7xSvgAPnXUjpjBNVfw6G1E9HA"
 
 THREADS_LIMIT = 1300
 
 chat_ids_file = 'chat_ids.txt'
 
-ADMIN_CHAT_ID = 465305744
+ADMIN_CHAT_ID = 641892529
 
-group_id = -1001376697243
+group_id = -1001383966997
 
 users_amount = [0]
 threads = list()
@@ -31,13 +31,13 @@ def send_message_users(message):
             'chat_id': chat_id,
             'text': message
         }
-        response = requests.post(f'https://api.telegram.org/bot{TOKEN}/sendMessage', data=data)
+        response = requests.post('https://api.telegram.org/bot{TOKEN}/sendMessage', data=data)
 
     with open(chat_ids_file, "r") as ids_file:
         ids_list = [line.split('\n')[0] for line in ids_file]
 
     [send_message(chat_id) for chat_id in ids_list]
-    bot.send_message(ADMIN_CHAT_ID, f"сообщение успешно отправлено всем ({users_amount[0]}) пользователям бота!")
+    bot.send_message(ADMIN_CHAT_ID, "сообщение успешно отправлено всем ({users_amount[0]}) пользователям бота!")
 
 
 def send_message_users(message):
