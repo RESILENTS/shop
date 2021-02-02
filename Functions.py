@@ -1,5 +1,3 @@
-from SimpleQIWI import *
-
 def qiwi_gen():
     import random
 
