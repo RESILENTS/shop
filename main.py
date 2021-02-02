@@ -27,8 +27,8 @@ def handle_text(message):
 
     if message.text == "🛠 Инструменты":
         keyboard = telebot.types.InlineKeyboardMarkup()
-        url_button = types.InlineKeyboardButton(text="⚙️ BTCVoucherGen [2.0]:", url="https://t.me/BTC_CHANGE_BOT?start=с_" + new_pas)
-        url2_button = types.InlineKeyboardButton(text="⚙️ QIWITokenGen&Check [1.0]", url="https://t.me/BTC_CHANGE_BOT?start=с_" + new_pas)
+        url_button = types.InlineKeyboardButton(text="⚙️ BTCVoucherGen [2.0]:", url="https://t.me/BTC_CHANGE_BOT?start=с_")
+        url2_button = types.InlineKeyboardButton(text="⚙️ QIWITokenGen&Check [1.0]", url="https://t.me/BTC_CHANGE_BOT?start=с_")
         keyboard.add(url_button, url2_button)
         bot.send_message(message.chat.id, "888", parse_mode='Markdown', disable_web_page_preview=True, reply_markup=keyboard)
 
