@@ -33,6 +33,12 @@ def any_msg(message):
     service3.row('🏠 Перейти на главную')
     bot.send_message(message.chat.id, "🤖* BTCVoucherGen 2.0:* Генератор BTC чеков. Скрипт генерирует ссылки для обнала BTC чеков в Telegram ботах.", reply_markup=service3, parse_mode='Markdown')
         
+@bot.message_handler(commands=['qiwitools'])
+def any_msg(message):
+    service4 = telebot.types.ReplyKeyboardMarkup(True)
+    service4.row('⚙️ Сгенерировать', '🏠 Перейти на главную')
+    bot.send_message(message.chat.id, "🤖* BTCVoucherGen 2.0:* Генератор BTC чеков. Скрипт генерирует ссылки для обнала BTC чеков в Telegram ботах.", reply_markup=service4, parse_mode='Markdown')
+        
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):
     if message.text == "📊 Статистика":
