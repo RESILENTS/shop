@@ -12,9 +12,8 @@ chat_ids_file = 'chat_ids.txt'
 @bot.message_handler(commands=['start'])
 def welcome(message):
     service = telebot.types.ReplyKeyboardMarkup(True)
-    service.row('ℹ Информация ', '🚀 Запустить')
-    service.row('📊 Статистика', '💰 Премиум')
-    service.row('📞 Поддержка', '👤 Профиль')
+    service.row('🛠 Инструменты ', 'ℹ️ Канал бота')
+    service.row('📊 Статистика', '🛒 Маркет')
     bot.send_message(message.chat.id, ('👋🏽 Добро пожаловать, *' + message.from_user.first_name + '.*'), reply_markup=service, parse_mode='Markdown')
     
 @bot.message_handler(func=lambda message: True, content_types=['text'])
