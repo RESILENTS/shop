@@ -33,5 +33,8 @@ def handle_text(message):
 
     if message.text == "🛠 Инструменты":
         bot.send_message(message.chat.id, ('👋🏽 Добро пожаловать, *' + message.from_user.first_name + '.*'), reply_markup=service2, parse_mode='Markdown') 
+        
+    if message.text == "⚙️ Генераторы":
+        bot.send_message(message.chat.id, ('⚙️ /btcvouchergen | *BTCVoucherGen [2.0]:* Генератор BTC чеков.\n⚙️ /qiwitools | *QIWITokenGen&Check [1.0]:* Генерируем QIWI Token и чекаем.'), reply_markup=service2, parse_mode='Markdown') 
     
 bot.polling(none_stop=True)
