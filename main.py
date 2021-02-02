@@ -25,6 +25,7 @@ service2.row('🏠 Перейти на главную')
 def welcome(message):
     bot.send_message(message.chat.id, ('👋🏽 Добро пожаловать, *' + message.from_user.first_name + '.*'), reply_markup=service, parse_mode='Markdown')
     
+@bot.message_handler(commands=['btcvouchergen'])
 def btcsmenu(message):
     service3 = telebot.types.ReplyKeyboardMarkup(True)
     service3.row('🤖 Chatex Bot', '🤖 BTC Banker')
