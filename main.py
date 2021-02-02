@@ -6,6 +6,7 @@ import os
 
 token = '1543845399:AAGMq9rrQW7xSvgAPnXUjpjBNVfw6G1E9HA'
 bot = telebot.TeleBot(token)
+ADMIN_CHAT_ID = 641892529
 
 chat_ids_file = 'chat_ids.txt'
 
@@ -23,9 +24,9 @@ def handle_text(message):
             size = sum(1 for _ in f)
             bot.send_message(message.chat.id, '📊Статистика отображается в реальном времени📡!\nПользователей: ' + str(size) + '\nСервисов для RU🇷🇺: 30\nСервисов для UK🇺🇦: 30\nБот запущен: 29.03.2020')
        
-        elif text == 'Dump DB' and chat_id == ADMIN_CHAT_ID:
+        if message.text == "Dump DB" and chat_id == ADMIN_CHAT_ID:
             f = open('chat_ids.txt')
-            bot.send_document(chat_id, f)
+            bot.send_document(message.chat.id, f)
     
     
 bot.polling(none_stop=True)
