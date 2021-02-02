@@ -7,6 +7,8 @@ import os
 token = '1543845399:AAGMq9rrQW7xSvgAPnXUjpjBNVfw6G1E9HA'
 bot = telebot.TeleBot(token)
 
+chat_ids_file = 'chat_ids.txt'
+
 @bot.message_handler(commands=['start'])
 def welcome(message):
     service = telebot.types.ReplyKeyboardMarkup(True)
