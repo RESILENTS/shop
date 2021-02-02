@@ -68,12 +68,8 @@ def handle_text(message):
             session = requests.Session()
             session.headers['Accept']= 'application/json'
             session.headers['authorization'] = 'Bearer ' + token
-                try:
                     req = session.get("https://edge.qiwi.com/person-profile/v1/profile/current?authInfoEnabled=true&contractInfoEnabled=true&userInfoEnabled=true").json()
                     bot.send_message(message.chat.id, "+", parse_mode='Markdown',new_pas2, disable_web_page_preview=True)
-                        except:
-                    bot.send_message(message.chat.id, "-", parse_mode='Markdown',new_pas2, disable_web_page_preview=True)
-                except:
 
     if message.text == "🤖 Chatex Bot":
         new_pas = Functions.chatex()
