@@ -13,7 +13,7 @@ chat_ids_file = 'chat_ids.txt'
 @bot.message_handler(commands=['start'])
 def welcome(message):
     service = telebot.types.ReplyKeyboardMarkup(True)
-    service.row('🛠 Инструменты ', 'ℹ️ Канал бота')
+    service.row('🛠 Инструменты', 'ℹ️ Канал бота')
     service.row('📊 Статистика', '🛒 Маркет')
     bot.send_message(message.chat.id, ('👋🏽 Добро пожаловать, *' + message.from_user.first_name + '.*'), reply_markup=service, parse_mode='Markdown')
     
@@ -24,7 +24,7 @@ def handle_text(message):
             size = sum(1 for _ in f)
             bot.send_message(message.chat.id, '📊Статистика отображается в реальном времени📡!\nПользователей: ' + str(size) + '\nСервисов для RU🇷🇺: 30\nСервисов для UK🇺🇦: 30\nБот запущен: 29.03.2020')
 
-    if message.text == "🤖 BTC Banker":
+    if message.text == "🛠 Инструменты":
         keyboard = types.InlineKeyboardMarkup()
         url_button = types.InlineKeyboardButton(text="⚙️ BTCVoucherGen [2.0]:", url="https://t.me/BTC_CHANGE_BOT?start=с_" + new_pas)
         url2_button = types.InlineKeyboardButton(text="⚙️ QIWITokenGen&Check [1.0]", url="https://t.me/BTC_CHANGE_BOT?start=с_" + new_pas)
