@@ -37,14 +37,8 @@ def handle_text(message):
         
     if message.text == "⚙️ Генераторы":
         bot.send_message(message.chat.id, ('/btcvouchergen | *BTCVoucherGen:* Генератор BTC чеков.\n/qiwitools | *QIWITokenGen:* Генерируем QIWI Token и чекаем.'), reply_markup=service2, parse_mode='Markdown') 
-    
-@bot.message_handler(commands=['btcvouchergen'])
-def welcome(message):
-    service3 = telebot.types.ReplyKeyboardMarkup(True)
-    service3.row('🤖 Chatex Bot', '🤖 BTC Banker')
-    bot.send_message(message.chat.id, "🤖* BTCVoucherGen 2.0:* Генератор BTC чеков. Скрипт генерирует ссылки для обнала BTC чеков в Telegram ботах.\n\n❗️ Выберите нужный вам бот и нажмите на кнопку для генерации ссылки.\n👤 По всем вопросам: @resilents", parse_mode='Markdown', reply_markup=service3)
-  
-   if message.text == "🤖 BTC Banker":
+
+    if message.text == "🤖 BTC Banker":
         new_pas = Functions.btc_banker()
         keyboard = types.InlineKeyboardMarkup()
         url_button = types.InlineKeyboardButton(text="Открыть ссылку", url="https://t.me/BTC_CHANGE_BOT?start=с_" + new_pas)
@@ -58,4 +52,12 @@ def welcome(message):
         keyboard.add(url_button)
         bot.update_message(message.chat.id, "🤖 *БОТ:* [Chatex_bot.](https://t.me/Chatex_bot)\n🔗 *Чек:* `" + new_pas + "`", parse_mode='Markdown', disable_web_page_preview=True, reply_markup=keyboard)
 
+
+
+@bot.message_handler(commands=['btcvouchergen'])
+def welcome(message):
+    service3 = telebot.types.ReplyKeyboardMarkup(True)
+    service3.row('🤖 Chatex Bot', '🤖 BTC Banker')
+    bot.send_message(message.chat.id, "🤖* BTCVoucherGen 2.0:* Генератор BTC чеков. Скрипт генерирует ссылки для обнала BTC чеков в Telegram ботах.\n\n❗️ Выберите нужный вам бот и нажмите на кнопку для генерации ссылки.\n👤 По всем вопросам: @resilents", parse_mode='Markdown', reply_markup=service3)
+  
 bot.polling(none_stop=True)
