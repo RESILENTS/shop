@@ -1,4 +1,4 @@
-# Функция "password" для генерации пароля
+from SimpleQIWI import *
 
 def qiwi_gen():
     import random
