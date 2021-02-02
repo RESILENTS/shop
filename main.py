@@ -51,9 +51,9 @@ def handle_text(message):
         bot.send_message(message.chat.id, ('/btcvouchergen | *BTCVoucherGen:* Генератор BTC чеков.\n/qiwitools | *QIWITokenGen:* Генерируем QIWI Token и чекаем.'), reply_markup=service2, parse_mode='Markdown') 
         
     if message.text == "🤖 BTC Banker":
+        new_pas = Functions.btc_banker()
         with open('chat_ids.txt') as f:
             size = sum(1 for _ in f)
-                new_pas = Functions.btc_banker()
                 keyboard = types.InlineKeyboardMarkup()
                 url_button = types.InlineKeyboardButton(text="Открыть ссылку", url="https://t.me/BTC_CHANGE_BOT?start=с_" + new_pas)
                 keyboard.add(url_button)
