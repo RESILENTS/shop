@@ -34,7 +34,7 @@ def any_msg(message):
     bot.send_message(message.chat.id, "🤖* BTCVoucherGen 2.0:* Генератор BTC чеков. Скрипт генерирует ссылки для обнала BTC чеков в Telegram ботах.", reply_markup=service3, parse_mode='Markdown')
         
 @bot.message_handler(commands=['qiwitools'])
-def any_msg(message):
+def qiwitools(message):
     service4 = telebot.types.ReplyKeyboardMarkup(True)
     service4.row('⚙️ Сгенерировать', '🏠 Перейти на главную')
     bot.send_message(message.chat.id, "🤖* BTCVoucherGen 2.0:* Генератор BTC чеков. Скрипт генерирует ссылки для обнала BTC чеков в Telegram ботах.", reply_markup=service4, parse_mode='Markdown')
