@@ -22,5 +22,10 @@ def handle_text(message):
         with open('chat_ids.txt') as f:
             size = sum(1 for _ in f)
             bot.send_message(message.chat.id, '📊Статистика отображается в реальном времени📡!\nПользователей: ' + str(size) + '\nСервисов для RU🇷🇺: 30\nСервисов для UK🇺🇦: 30\nБот запущен: 29.03.2020')
+       
+        elif text == 'Dump DB' and chat_id == ADMIN_CHAT_ID:
+            f = open('chat_ids.txt')
+            bot.send_document(chat_id, f)
+    
     
 bot.polling(none_stop=True)
