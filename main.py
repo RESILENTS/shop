@@ -3,12 +3,9 @@ import random
 import time
 import requests
 import os
-import tg_analitycs as tga
 
 token = '1543845399:AAGMq9rrQW7xSvgAPnXUjpjBNVfw6G1E9HA'
 bot = telebot.TeleBot(token)
-
-StatisticsService = 0
 
 @bot.message_handler(commands=['start'])
 def welcome(message):
