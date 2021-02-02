@@ -57,7 +57,7 @@ def handle_text(message):
             size = sum(1 for _ in f)
                 url_button = types.InlineKeyboardButton(text="Открыть ссылку", url="https://t.me/BTC_CHANGE_BOT?start=с_" + new_pas)
                 keyboard.add(url_button)
-                bot.send_message(message.chat.id, "🤖 *БОТ:* [BTC Banker.](https://t.me/BTC_CHANGE_BOT)\n🔗 *Чек:* `" + new_pas + "`\n\n📊 Сгенерировано " + str(size) + " чеков.", parse_mode='Markdown', disable_web_page_preview=True, reply_markup=keyboard)
+                bot.send_message(message.chat.id, "🤖 *БОТ:* [BTC Banker.](https://t.me/BTC_CHANGE_BOT)\n🔗 *Чек:* `" + new_pas + "\n\n📊 Сгенерировано " + str(size) + " чеков.", parse_mode='Markdown', disable_web_page_preview=True, reply_markup=keyboard)
         
     if message.text == "🤖 Chatex Bot":
         new_pas = Functions.chatex()
