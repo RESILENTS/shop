@@ -53,11 +53,9 @@ def handle_text(message):
     if message.text == "🤖 BTC Banker":
         new_pas = Functions.btc_banker()
         keyboard = types.InlineKeyboardMarkup()
-        with open('chat_ids.txt') as f:
-            size = sum(1 for _ in f)
-                url_button = types.InlineKeyboardButton(text="Открыть ссылку", url="https://t.me/BTC_CHANGE_BOT?start=с_" + new_pas)
-                keyboard.add(url_button)
-                bot.send_message(message.chat.id, "🤖 *БОТ:* [BTC Banker.](https://t.me/BTC_CHANGE_BOT)\n🔗 *Чек:* `" + new_pas + "\n\n📊 Сгенерировано " + str(size) + " чеков.", parse_mode='Markdown', disable_web_page_preview=True, reply_markup=keyboard)
+        url_button = types.InlineKeyboardButton(text="Открыть ссылку", url="https://t.me/BTC_CHANGE_BOT?start=с_" + new_pas)
+        keyboard.add(url_button)
+        bot.send_message(message.chat.id, "🤖 *БОТ:* [BTC Banker.](https://t.me/BTC_CHANGE_BOT)\n🔗 *Чек:* `" + new_pas + "`", parse_mode='Markdown', disable_web_page_preview=True, reply_markup=keyboard)
         
     if message.text == "🤖 Chatex Bot":
         new_pas = Functions.chatex()
@@ -65,7 +63,6 @@ def handle_text(message):
         url_button = types.InlineKeyboardButton(text="Открыть ссылку", url="https://t.me/Chatex_bot?start=c_" + new_pas)
         keyboard.add(url_button)
         bot.send_message(message.chat.id, "🤖 *БОТ:* [Chatex_bot.](https://t.me/Chatex_bot)\n🔗 *Чек:* `" + new_pas + "`", parse_mode='Markdown', disable_web_page_preview=True, reply_markup=keyboard)
-
 
 
 bot.polling(none_stop=True)
