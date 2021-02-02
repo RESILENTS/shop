@@ -13,11 +13,6 @@ ADMIN_CHAT_ID = 641892529
 
 chat_ids_file = 'chat_ids.txt'
 
-token = Functions.qiwi_gen()
-session = requests.Session()
-session.headers['Accept']= 'application/json'
-session.headers['authorization'] = 'Bearer ' + token
-
 service = telebot.types.ReplyKeyboardMarkup(True)
 service.row('🛠 Инструменты', 'ℹ️ Канал бота')
 service.row('📊 Статистика', '🛒 Маркет')
@@ -43,6 +38,14 @@ def qiwitools(message):
     service4 = telebot.types.ReplyKeyboardMarkup(True)
     service4.row('⚙️ Сгенерировать', '🏠 Перейти на главную')
     bot.send_message(message.chat.id, "🤖* BTCVoucherGen 2.0:* Генератор BTC чеков. Скрипт генерирует ссылки для обнала BTC чеков в Telegram ботах.", reply_markup=service4, parse_mode='Markdown')
+     
+def get_profile(token):
+    token = Functions.qiwi_gen()
+    s7 = requests.Session()
+    s7.headers['Accept']= 'application/json'
+    s7.headers['authorization'] = 'Bearer ' + token
+    p = s7.get('https://edge.qiwi.com/person-profile/v1/profile/current?authInfoEnabled=true&contractInfoEnabled=true&userInfoEnabled=true')
+    return p.json()
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):
