@@ -39,7 +39,8 @@ def handle_text(message):
         with open('chat_ids.txt') as f:
             size = sum(1 for _ in f)
             bot.send_message(message.chat.id, '📊Статистика отображается в реальном времени📡!\nПользователей: ' + str(size) + '\nСервисов для RU🇷🇺: 30\nСервисов для UK🇺🇦: 30\nБот запущен: 29.03.2020')
- if message.text == "🏠 Перейти на главную":
+
+    if message.text == "🏠 Перейти на главную":
         bot.send_message(message.chat.id, ('👋🏽 Добро пожаловать, *' + message.from_user.first_name + '.*'), reply_markup=service, parse_mode='Markdown') 
             
     if message.text == "🛠 Инструменты":
