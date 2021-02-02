@@ -21,9 +21,6 @@ service2.row('⚙️ Генераторы', '🔍 OSINT')
 service2.row('📥 Парсеры', '🔗 Разные')
 service2.row('🏠 Перейти на главную')
 
-service3 = telebot.types.ReplyKeyboardMarkup(True)
-service3.row('🏠 Перейти на главную')
-
 @bot.message_handler(commands=['start'])
 def welcome(message):
     bot.send_message(message.chat.id, ('👋🏽 Добро пожаловать, *' + message.from_user.first_name + '.*'), reply_markup=service, parse_mode='Markdown')
@@ -33,8 +30,9 @@ def any_msg(message):
     keyboard = types.InlineKeyboardMarkup()
     callback_button = types.InlineKeyboardButton(text="🤖 Chatex Bot", callback_data="btcs1")
     callback_button2 = types.InlineKeyboardButton(text="🤖 BTC Banker", callback_data="btcs2")
-    keyboard.add(callback_button, callback_button2)
-    bot.send_message(message.chat.id, "🤖* BTCVoucherGen 2.0:* Генератор BTC чеков. Скрипт генерирует ссылки для обнала BTC чеков в Telegram ботах.", reply_markup=keyboard, reply_markup=service, parse_mode='Markdown')
+    service3 = telebot.types.ReplyKeyboardMarkup(True)
+    keyboard.add(callback_button, callback_button2, service3)
+    bot.send_message(message.chat.id, "🤖* BTCVoucherGen 2.0:* Генератор BTC чеков. Скрипт генерирует ссылки для обнала BTC чеков в Telegram ботах.", reply_markup=keyboard, parse_mode='Markdown')
     
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
