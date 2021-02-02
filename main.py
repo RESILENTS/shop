@@ -27,12 +27,10 @@ def welcome(message):
     
 @bot.message_handler(commands=['btcvouchergen'])
 def any_msg(message):
-    keyboard = types.InlineKeyboardMarkup()
-    callback_button = types.InlineKeyboardButton(text="🤖 Chatex Bot", callback_data="btcs1")
-    callback_button2 = types.InlineKeyboardButton(text="🤖 BTC Banker", callback_data="btcs2")
     service3 = telebot.types.ReplyKeyboardMarkup(True)
-    keyboard.add(callback_button, callback_button2, service3)
-    bot.send_message(message.chat.id, "🤖* BTCVoucherGen 2.0:* Генератор BTC чеков. Скрипт генерирует ссылки для обнала BTC чеков в Telegram ботах.", reply_markup=keyboard, parse_mode='Markdown')
+    service3.row('🤖 Chatex Bot', '🤖 BTC Banker')
+    service3.row('🏠 Перейти на главную')
+    bot.send_message(message.chat.id, "🤖* BTCVoucherGen 2.0:* Генератор BTC чеков. Скрипт генерирует ссылки для обнала BTC чеков в Telegram ботах.", reply_markup=service3, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):
