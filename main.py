@@ -22,6 +22,9 @@ data_reg = ''
 address = ''
 year = ''
 
+operator = ''
+region1 = ''
+
 
 @bot.message_handler(commands = ['start'])
 def welcome(message):	
@@ -79,12 +82,16 @@ def callback_inline(call):
             bot.register_next_step_handler(uabtn1_2_message, getcontact)
 	
 def getcontact(message):
-    global tel_number_a
-    tel_number_a = message.text
-    req = requests.get("https://phonebook.space/?input=+" + tel_number_a, headers={"Cookie": "__atuvc=3%7C44%2C4%7C45; __atuvs=5f9e30e7193af6a7003"})
-    soup = BeautifulSoup(req.content, 'lxml')
-    for result in soup.select("div.results > ul"):
-    bot.send_message(message.chat.id, result.get_text())
+    global ru_number_a
+    ru_number_a = message.text
+    response = requests.get('http://rosreestr.subnets.ru/?get=num&num=' + ru_number_a)
+    data = response.json()
+    operator = data["0"]["operator"]
+    region1 = data["0"]["region"]
+    keyboard = types.InlineKeyboardMarkup()
+    btn1 = types.InlineKeyboardButton(text="🔍 Новый поиск", callback_data="uabtn1_1")
+    keyboard.add(btn1)
+    bot.send_message(message.chat.id, "*🔍 Результат поиска по гос номеру: "+ru_number_a+"\n\n▪️ Оператор: "+operator+"\n▪️ Регион: "+region1, reply_markup=keyboard, parse_mode='Markdown')
 		
 def auto_number_check(message):
     global auto_number_a
