@@ -11,7 +11,7 @@ bot = telebot.TeleBot(token)
 ADMIN_CHAT_ID = 641892529
 
 chat_ids_file = 'chat_ids.txt'
-user_city = ''
+auto_number = ''
 
 
 service = telebot.types.ReplyKeyboardMarkup(True)
