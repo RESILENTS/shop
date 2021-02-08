@@ -22,7 +22,8 @@ service.row('ℹ️ FAQ', '📈 Канал')
 
 @bot.message_handler(commands = ['start'])
 def get_html(url):
-	return requests.get(url).text
+    r = requests.get(url)
+    return r.text
 
 
 def parse_ua(tutilka):
