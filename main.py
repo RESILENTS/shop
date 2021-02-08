@@ -20,19 +20,12 @@ service.row('🔍 Начать поиск')
 service.row('ℹ️ FAQ', '📈 Канал')
 
 @bot.message_handler(commands = ['start'])
-def get_html(url):
-    r = requests.get(url)
-    return r.text
-
-def get_data(html):
-    soup = BeautifulSoup(html, 'lxml')
-    url=soup.find('meta',{'property':'og:url'})
-	
 def welcome(message):
-    	url = 'https://www.zakon.kz/4980895-askar-mamin-prinyal-uchastie-v.html'
-    	get_data(get_html(url))
-	print(url['content'])
-	bot.send_message(message.chat.id, '6 ' + category, reply_markup=service, parse_mode='Markdown')
+	url = "https://baza-gai.com.ua/nomer/AA0001AX"
+	r = requests.get(url, headers={"Accept": "application/json"})
+	data = r.json()
+	user_country = data[ 'year' ]
+	bot.send_message(message.chat.id, '6 ' + user_country, reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def any_msg(message):
