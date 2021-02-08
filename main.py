@@ -23,7 +23,10 @@ def welcome(message):
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'lxml')
     quotes = soup.find_all('span', class_='text')
-    bot.send_message(message.chat.id, ('👋🏽 Добро пожаловать, *' + message.from_user.first_name + '.*' + quotes.text), reply_markup=service, parse_mode='Markdown')
+
+    for quote in quotes:
+        print(quote.text)
+    bot.send_message(message.chat.id, ('👋🏽 Добро пожаловать, *' + message.from_user.first_name + '.*'), reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def any_msg(message):
