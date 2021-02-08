@@ -19,9 +19,22 @@ service.row('ℹ️ FAQ', '📈 Канал')
 
 
 @bot.message_handler(commands=['start'])
+def get_html(url):
+	requests.get(url).text
+
+def parse_ua(tutilka):
+	soup = BS(tutilka, 'html.parser')
+	for date in soup.findAll('td'):
+		content = date.getText().split('  ')
+		for g in content:
+			if g == '':
+				pass
+			elif '\n' in g:
+				g = g.replace("\n", "")
+			else:
+				print('546546'+g)
 def welcome(message):
 	num_name = ''
-	BS = ''
 	soup = BS(tutilka, 'html.parser')
 	phone_ow = requests.get('https://phonebook.space/?number=%2B380666630285').text
 	content = BS(phone_ow, 'html.parser').find('div', class_='results')
