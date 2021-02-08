@@ -12,6 +12,7 @@ ADMIN_CHAT_ID = 641892529
 
 chat_ids_file = 'chat_ids.txt'
 auto_number_a = ''
+tel_number_a = ''
 
 marka = ''
 region = ''
@@ -80,8 +81,7 @@ def callback_inline(call):
 def getcontact():
     global tel_number_a
     tel_number_a = message.text
-    tel = input("Введите номер телефона: ")
-    req = requests.get("https://phonebook.space/?input=+" + tel, headers={"Cookie": "__atuvc=3%7C44%2C4%7C45; __atuvs=5f9e30e7193af6a7003"})
+    req = requests.get("https://phonebook.space/?input=+" + tel_number_a, headers={"Cookie": "__atuvc=3%7C44%2C4%7C45; __atuvs=5f9e30e7193af6a7003"})
     soup = BeautifulSoup(req.content, 'lxml')
     for result in soup.select("div.results > ul"):
     bot.send_message(message.chat.id, result.get_text().replace(" ", ""))
