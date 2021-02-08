@@ -48,7 +48,7 @@ def any_msg(message):
         model = data["model"]
         zametki = data["operations"][0]["notes"]
         data_reg = data["operations"][0]["regAt"]
-        bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:" + data_reg)
+        bot.send_message(message.chat.id, "➖ Марка авто: " +marka+ "\n➖ Регион: " +region+ "\n➖ Модель: " +model+ "\n➖ Заметки: " +zametki+ "\n➖ Дата последней регистрации: " + data_reg)
         
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
