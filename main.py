@@ -79,12 +79,12 @@ def callback_inline(call):
             bot.register_next_step_handler(begin_new_car, get_car_plate)
 	
 		
-def get_car_plate(message: Message):
+def get_car_plate(message):
 	global auto_number_a
 	auto_number_a = message.text.upper()
 	bot.register_next_step_handler(message, auto_number_check)
 	
-def auto_number_check(message: Message):
+def auto_number_check(message):
     global auto_number_a
     auto_number = message.text
     marka = ''
