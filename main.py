@@ -22,7 +22,7 @@ service.row('ℹ️ FAQ', '📈 Канал')
 def welcome(message):
         g = Grab()
         r = g.go('https://baza-gai.com.ua/nomer/CE1234BC')
-        content = r.tree.xpath('/html/body/div[1]/table/tbody/tr[1]/td[4]') 
+        content = r.tree.xpath('/html/body/div[1]/table/tbody/tr[1]/td[3]') 
         print(content)
         bot.send_message(message.chat.id, ('👋🏽 Добро пожаловать, *' + message.from_user.first_name + '.*'), reply_markup=service, parse_mode='Markdown')
         
