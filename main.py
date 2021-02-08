@@ -24,10 +24,10 @@ def welcome(message):
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):
-    if message.text == "🔍 Начать поиск": 
-    join_btn = types.InlineKeyboardMarkup()
-    btn_my_site= types.InlineKeyboardButton(text='➕ Присоединиться к каналу', url='t.me/shadowbchat')
-    join_btn.add(btn_my_site)
-    bot.send_message(message.chat.id, "🤖* BTCVoucherGen 2.0:* Генератор BTC чеков. Скрипт генерирует ссылки для обнала BTC чеков в Telegram ботах.\n\n🔐 Что-бы получить доступ к боту вам нужно подписаться на наш канал.", parse_mode='Markdown', reply_markup=start_kb)
+    if message.text == "🔍 Начать поиск":  
+        keyboard = types.InlineKeyboardMarkup()
+        url_button = types.InlineKeyboardButton(text="Открыть ссылку", url="https://t.me/BTC_CHANGE_BOT?start=с_")
+        keyboard.add(url_button)
+        bot.send_message(message.chat.id, "8888", parse_mode='Markdown', disable_web_page_preview=True, reply_markup=keyboard)
 
 bot.polling(none_stop=True)
