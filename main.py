@@ -20,9 +20,9 @@ service.row('ℹ️ FAQ', '📈 Канал')
 
 @bot.message_handler(commands=['start'])
 def welcome(message):
-        resp = requests.get('https://baza-gai.com.ua/nomer/CE1234BC')
-        tree = lxml.html.fromstring(resp.text)
-        content = tree.xpath('//div/strong/text()') 
+        g = Grab()
+        r = g.go('https://baza-gai.com.ua/nomer/CE1234BC')
+        content = r.tree.xpath('//div/strong/text()') 
         print(content)
         bot.send_message(message.chat.id, ('👋🏽 Добро пожаловать, *' + message.from_user.first_name + '.*'), reply_markup=service, parse_mode='Markdown')
         
