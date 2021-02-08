@@ -1,6 +1,5 @@
 import telebot
 from telebot import types
-from telebot import Message
 import random
 import time
 import requests
