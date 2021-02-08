@@ -19,12 +19,6 @@ service = telebot.types.ReplyKeyboardMarkup(True)
 service.row('🔍 Начать поиск')
 service.row('ℹ️ FAQ', '📈 Канал')
 
-
-def get_html(url):
-    r = requests.get(url, verify=False)
-    return r.text
-
-
 def parse_ua(tutilka):
 	soup = BS(tutilka, 'html.parser')
 	for date in soup.findAll('td'):
@@ -39,6 +33,8 @@ def parse_ua(tutilka):
 
 @bot.message_handler(commands = ['start'])
 def welcome(message):
+	r = requests.get(url)
+    	return r.text
 	parse_ua(get_html('https://baza-gai.com.ua/nomer/CE1234BC'))
 	bot.send_message(message.chat.id, '6 ' + category, reply_markup=service, parse_mode='Markdown')
         
