@@ -18,13 +18,11 @@ service.row('ℹ️ FAQ', '📈 Канал')
 
 
 @bot.message_handler(commands=['start'])
-def get_html(url):
+def welcome(message):
     url = 'https://quotes.toscrape.com/'
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'lxml')
     quotes = soup.find_all('span', class_='text')
-
-def welcome(message):
     bot.send_message(message.chat.id, ('👋🏽 Добро пожаловать, *' + message.from_user.first_name + '.*' + quotes), reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
