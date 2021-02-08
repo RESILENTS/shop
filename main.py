@@ -12,7 +12,7 @@ ADMIN_CHAT_ID = 641892529
 
 chat_ids_file = 'chat_ids.txt'
 auto_number_a = ''
-tel_number_a = ''
+ru_number_a = ''
 
 marka = ''
 region = ''
@@ -84,8 +84,8 @@ def callback_inline(call):
 def getcontact(message):
     global ru_number_a
     ru_number_a = message.text
-    response = requests.get('https://rosreestr.subnets.ru/?get=num&num=' + ru_number_a)
-    data1 = response.json()
+    response1 = requests.get('https://rosreestr.subnets.ru/?get=num&num=' + ru_number_a)
+    data1 = response1.json()
     operator = data1["0"]["operator"]
     region1 = data1["0"]["region"]
     keyboard = types.InlineKeyboardMarkup()
