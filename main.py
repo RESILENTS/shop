@@ -21,19 +21,25 @@ service.row('ℹ️ FAQ', '📈 Канал')
 
 
 @bot.message_handler(commands = ['start'])
+def get_html(url):
+	return requests.get(url).text
+
+
+def parse_ua(tutilka):
+	soup = BS(tutilka, 'html.parser')
+	for date in soup.findAll('td'):
+		content = date.getText().split('  ')
+		for g in content:
+			if g == '':
+				pass
+			elif '\n' in g:
+				g = g.replace("\n", "")
+			else:
+				print(g)
+		
 def welcome(message):
-			headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; ) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4086.0 Safari/537.36","Connection": "keep-alive","Host": "iknowwhatyoudownload.com","Referer": "https://iknowwhatyoudownload.com"}
-			page = requests.get("https://baza-gai.com.ua/nomer/CE1234BC")
-			soup = BS(page.content, "html.parser")
-			table = soup.find(class_="d-md-none").find("div")
-			torrents = table.find_all("strong")
-			for torrent in torrents:
-				first, last = torrent.find_all(class_="date-column")
-				first, last = first.text, last.text
-				category = torrent.find(class_="Прикмети:").text
-				name = torrent.find(class_="name-column").text.replace("\n", '').replace('    ', '')
-				size = torrent.find(class_="size-column").text
-			bot.send_message(message.chat.id, '6 ' + category, reply_markup=service, parse_mode='Markdown')
+	parse_ua(get_html('https://baza-gai.com.ua/nomer/CE1234BC'))
+	bot.send_message(message.chat.id, '6 ' + category, reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def any_msg(message):
