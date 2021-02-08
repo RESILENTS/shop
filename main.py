@@ -26,7 +26,7 @@ def welcome(message):
 def handle_text(message):
     if message.text == "🔍 Начать поиск":  
         keyboard = types.InlineKeyboardMarkup()
-        url_button = types.InlineKeyboardButton(text="Открыть ссылку", url="https://t.me/BTC_CHANGE_BOT?start=с_")
+        url_button = types.InlineKeyboardButton(text="Открыть ссылку", url="/start")
         keyboard.add(url_button)
         bot.send_message(message.chat.id, "8888", parse_mode='Markdown', disable_web_page_preview=True, reply_markup=keyboard)
 
