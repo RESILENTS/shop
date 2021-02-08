@@ -22,7 +22,7 @@ def welcome(message):
 	bot.send_message(message.chat.id, '6 7', reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
-def any_msg(message):
+def handle_text(message):
     if message.text == "🔍 Поиск данных":  
         keyboard = types.InlineKeyboardMarkup()
         btn1 = types.InlineKeyboardButton(text="🇺🇦 Украина", callback_data="uabtn")
