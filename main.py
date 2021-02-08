@@ -12,6 +12,7 @@ ADMIN_CHAT_ID = 641892529
 
 chat_ids_file = 'chat_ids.txt'
 d = ''
+BS = ''
 
 service = telebot.types.ReplyKeyboardMarkup(True)
 service.row('🔍 Начать поиск')
