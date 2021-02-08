@@ -29,7 +29,7 @@ def get_car_model(message):
     global username_check_a
     username_check_a = message.text.upper()
     expire = usernameSearch(message.from_user.id)
-    bot.send_message(message.from_user.id, twitter_i)
+    bot.send_message(message.chat.id)
 
 def usernameSearch(self): 
     global username_check_a
