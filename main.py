@@ -23,7 +23,7 @@ def welcome(message):
     bot.send_message(message.chat.id, ('👋🏽 Добро пожаловать, *' + message.from_user.first_name + '.*'), reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
-def handle_text(message):
+def any_msg(message):
     if message.text == "🔍 Начать поиск":  
         keyboard = types.InlineKeyboardMarkup()
         btn1 = types.InlineKeyboardButton(text="🇺🇦 Украина", callback_data="uabtn")
@@ -31,6 +31,7 @@ def handle_text(message):
         keyboard.add(btn1, btn2)
         bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:", reply_markup=keyboard)
         
+@bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
     if call.message:
         if call.data == "uabtn":
