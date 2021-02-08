@@ -2,10 +2,8 @@ import telebot
 from telebot import types
 import random
 import time
-import requests
+import requests, bs4
 import os
-import Functions
-from SimpleQIWI import *
 
 token = '1543845399:AAGMq9rrQW7xSvgAPnXUjpjBNVfw6G1E9HA'
 bot = telebot.TeleBot(token)
@@ -38,6 +36,17 @@ def any_msg(message):
         
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
+        s=requests.get('https://sinoptik.com.ru/погода-москва')
+        b=bs4.BeautifulSoup(s.text, "html.parser")
+        p3=b.select('.temperature .p3')
+        pogoda1=p3[0].getText()
+        p4=b.select('.temperature .p4')
+        pogoda2=p4[0].getText()
+        p5=b.select('.temperature .p5')
+        pogoda3=p5[0].getText()
+        p6=b.select('.temperature .p6')
+        pogoda4=p6[0].getText()
+    
     if call.message:
         if call.data == "uabtn":
             keyboard = types.InlineKeyboardMarkup()
@@ -48,7 +57,7 @@ def callback_inline(call):
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="🇺🇦 Все доступные инструменты для поиска нужной вам информации.", reply_markup=keyboard)
             
         if call.data == "test":
-            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пыщь2")
+            bot.edit_message_text(chat_id=call.message.chat.id, message_id=pogoda1, text="Пыщь2")
 
 
 bot.polling(none_stop=True)
