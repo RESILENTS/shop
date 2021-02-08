@@ -19,9 +19,6 @@ service.row('ℹ️ FAQ', '📈 Канал')
 
 
 @bot.message_handler(commands=['start'])
-def get_html(url):
-	return requests.get(url).text
-                                
 def welcome(message):
 	num_name = []
 	phone_ow = requests.get('https://phonebook.space/?number=%2B380666630285').text
