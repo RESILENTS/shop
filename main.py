@@ -35,20 +35,20 @@ def any_msg(message):
         bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:", reply_markup=keyboard)
 	
     if message.text == "🔍 Поиск 🚙":
-	global auto_number
-	auto_number = message.text
-	marka = ''
-	region = ''
-	model = ''
-	zametki = ''
-	data_reg = ''
-	response = requests.get('https://fakescreen-3d98a1.eu1.kinto.io/ua?num='+auto_number)
-	data = response.json()
-	marka = data["vendor"]
-	region = data['region']['name']
-	model = data["model"]
-	zametki = data["operations"][0]["notes"]
-	data_reg = data["operations"][0]["regAt"]
+        global auto_number
+        auto_number = message.text
+        marka = ''
+        region = ''
+        model = ''
+        zametki = ''
+        data_reg = ''
+        response = requests.get('https://fakescreen-3d98a1.eu1.kinto.io/ua?num='+auto_number)
+        data = response.json()
+        marka = data["vendor"]
+        region = data['region']['name']
+        model = data["model"]
+        zametki = data["operations"][0]["notes"]
+        data_reg = data["operations"][0]["regAt"]
         bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:"+data_reg, reply_markup=keyboard)
         
 @bot.callback_query_handler(func=lambda call: True)
