@@ -51,6 +51,8 @@ def car_ua():
         data_reg = data["operations"][0]["regAt"]
 	
     if message.text == "🔍 Поиск 🚙":
+        global auto_number
+        auto_number = message.text
         bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:" + data_reg + '666' + auto_number, reply_markup=keyboard)
         
 @bot.callback_query_handler(func=lambda call: True)
