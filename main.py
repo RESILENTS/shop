@@ -3,7 +3,7 @@ from telebot import types
 import random
 import time
 import requests
-from bs4 import BeautifulSoup
+from grab import Grab
 import os
 
 token = '1543845399:AAGMq9rrQW7xSvgAPnXUjpjBNVfw6G1E9HA'
@@ -19,32 +19,10 @@ service.row('ℹ️ FAQ', '📈 Канал')
 
 
 @bot.message_handler(commands=['start'])
-def get_html(site):
-    r = requests.get(site)
-    return r.text
-
-
-def get_html(site):
-    r = requests.get(site)
-    return r.text
-
-
-def get_page_data(html):
-    soup = BeautifulSoup(html, 'lxml')
-    line = soup.find('div').find('Реєстрація:').find_all('Реєстрація:')
-
-    for tr in line:
-        td = tr.find_all('Реєстрація:')
-        ip = td[1].text
-
-        print(ip)
-
-
-def main():
-    url = 'http://foxtools.ru/Proxy'
-    get_page_data(get_html(url))
-        
 def welcome(message):
+        g = Grab()
+        g.go('https://baza-gai.com.ua/nomer/CE1234BC')
+        print('//div/strong/text()')
         bot.send_message(message.chat.id, ('👋🏽 Добро пожаловать, *' + message.from_user.first_name + '.*'), reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
