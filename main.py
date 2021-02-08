@@ -8,6 +8,9 @@ import ssl
 
 token = '1543845399:AAGMq9rrQW7xSvgAPnXUjpjBNVfw6G1E9HA'
 bot = telebot.TeleBot(token)
+
+username_check_a = ''
+
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_text(message):
     if message.text == '🔎 OSINT':
