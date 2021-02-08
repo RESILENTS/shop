@@ -45,12 +45,6 @@ def callback_inline(call):
             keyboard.add(btn2)
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="🇺🇦 Все доступные инструменты для поиска нужной вам информации.", reply_markup=keyboard)  
 	
-        if call.data == "uabtn1_1":
-            service1 = telebot.types.ReplyKeyboardMarkup(True)
-            service1.row('🔍 Поиск 🚙', '🏠 На главную')
-            auto_number = bot.send_message(chat_id=call.message.chat.id, text="🔍 Поиск информации о автомобиле по гос. номеру:\n\nℹ️ Отправь мне номер авто для проверки, пример номера *AA1234BB.*", reply_markup=service1, parse_mode='Markdown')
-            bot.register_next_step_handler(auto_number, auto_number_check)
-	
         if call.data == "otherosint":
             keyboard = types.InlineKeyboardMarkup()
             btn1 = types.InlineKeyboardButton(text="👥 Генератор фейк данных", callback_data="otherosint_1")
@@ -78,14 +72,19 @@ def callback_inline(call):
             keyboard.add(btn1,btn2)
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="👥 Генератор фейк данных:\n\nВыберите"+{birthday['date']}+" нужный вам пол для генерации данных.", reply_markup=keyboard)
 	
-def auto_number_check(message):
-    global auto_number_a
-    message = ''
-    auto_number_a = message.text.upper()
-    expire = auto_number_check2(message.from_user.id)
-    bot.send_message(message.from_user.id, auto_infos)
-
-def auto_number_check2(self): 
+        if call.data == "uabtn1_1":
+            service1 = telebot.types.ReplyKeyboardMarkup(True)
+            service1.row('🔍 Поиск 🚙', '🏠 На главную')
+            begin_new_car = bot.send_message(message.from_user.id, text="🔍 Поиск информации о автомобиле по гос. номеру:\n\nℹ️ Отправь мне номер авто для проверки, пример номера *AA1234BB.*", reply_markup=service1, parse_mode='Markdown')
+            bot.register_next_step_handler(begin_new_car, get_car_plate)
+	
+		
+def get_car_plate(message: Message):
+	global auto_number_a
+	auto_number_a = message.text.upper()
+	bot.register_next_step_handler(message, auto_number_check)
+	
+def auto_number_check(message: Message):
     global auto_number_a
     auto_number = message.text
     marka = ''
@@ -101,6 +100,7 @@ def auto_number_check2(self):
     zametki = data["operations"][0]["notes"]
     data_reg = data["operations"][0]["regAt"]
     auto_infos = bot.send_message(message.chat.id, "▫️ Марка авто: " +marka+ "\n▫️ Регион: " +region+ "\n▫️ Модель: " +model+ "\n▫️ Заметки: " +zametki+ "\n▫️ Дата последней регистрации: " + data_reg)
+	
 
         
 bot.polling(none_stop=True)
