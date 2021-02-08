@@ -29,7 +29,7 @@ def welcome(message):
 				num_name.append(i.text.strip())
 			name = ', '.join(num_name)
 			user_all_info = name
-			bot.send_message(message.chat.id, '666' + name, reply_markup=service, parse_mode='Markdown')
+			bot.send_message(message.chat.id, '666' + num_name, reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def any_msg(message):
