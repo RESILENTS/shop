@@ -92,7 +92,7 @@ def get_car_plate(message):
 	
 def auto_number_check(message):
     global auto_number_a
-    auto_number = message.text
+    auto_number_a = message.text
     response = requests.get('https://fakescreen-3d98a1.eu1.kinto.io/ua?num=' + auto_number_a)
     data = response.json()
     region = data["region"]["name"]
