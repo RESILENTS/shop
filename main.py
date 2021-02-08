@@ -30,7 +30,7 @@ region1 = ''
 def welcome(message):	
         service = telebot.types.ReplyKeyboardMarkup(True)
         service.row('🔍 Поиск данных', '⚙️ Инструменты')
-        service.row('ℹ️ Руководство', '🛠 Наши проекты')
+        service.row('ℹ️ Информация', '🛠 Наши проекты')
         bot.send_message(message.chat.id, "👋🏽 Добро пожаловать, *"+ message.from_user.first_name +".**\n\nТЕНЕВОЙ ПОИСК — Я помогу тебе с поиском информации.*\n\nУ меня есть функции для поиска информации по интернету.\nДанный проект работает на абсолютно бесплатной основе и создан ради того, чтобы помочь вам в поисках лиц.\n\n👤 *По всем вопросам: @resilents*", reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
@@ -71,7 +71,7 @@ def callback_inline(call):
             btn2 = types.InlineKeyboardButton(text="🔍 Поиск по номеру телефона", callback_data="uabtn1_2")
             keyboard.add(btn1)
             keyboard.add(btn2)
-            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="🇺🇦 Все доступные инструменты для поиска нужной вам информации.", reply_markup=keyboard)  
+            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="🔍  В данном разделе собраны сервисы для поиска информации по 🇺🇦 *Украине.*", reply_markup=keyboard, parse_mode='Markdown')
 
         if call.data == "uabtn1_1":
             uabtn1_1_message = bot.send_message(chat_id=call.message.chat.id, text="🔍 Поиск информации о автомобиле по гос. номеру:\n\nℹ️ Отправь мне номер авто для проверки, пример номера *AA1234BB.*", parse_mode='Markdown')
