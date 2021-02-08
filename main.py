@@ -19,6 +19,7 @@ service = telebot.types.ReplyKeyboardMarkup(True)
 service.row('🔍 Начать поиск')
 service.row('ℹ️ FAQ', '📈 Канал')
 
+@bot.message_handler(commands = ['start'])
 def get_html(url):
     r = requests.get(url)
     return r.text
@@ -31,8 +32,7 @@ def get_data(html):
 def main():
     url = 'https://www.zakon.kz/4980895-askar-mamin-prinyal-uchastie-v.html'
     get_data(get_html(url))
-
-@bot.message_handler(commands = ['start'])
+	
 def welcome(message):
 	print(url['content'])
 	bot.send_message(message.chat.id, '6 ' + category, reply_markup=service, parse_mode='Markdown')
