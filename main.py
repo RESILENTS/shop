@@ -18,28 +18,15 @@ service = telebot.types.ReplyKeyboardMarkup(True)
 service.row('🔍 Начать поиск')
 service.row('ℹ️ FAQ', '📈 Канал')
 
-
-@bot.message_handler(commands=['start'])
-def parse_ua(tutilka):
-	soup = BS(tutilka, 'html.parser')
-	for date in soup.findAll('td'):
-		content = date.getText().split('  ')
-		for g in content:
-			if g == '':
-				pass
-			elif '\n' in g:
-				g = g.replace("\n", "")
-			else:
-				print('6777'+g)
 def welcome(message):
-	num_name = ''
-	soup = BS(tutilka, 'html.parser')
-	phone_ow = requests.get('https://phonebook.space/?number=%2B380666630285').text
-	content = BS(phone_ow, 'html.parser').find('div', class_='results')
-	for i in content.find_all('li'):
-		num_name.append(i.text.strip())
-	name = ', '.join(num_name)
-	print(num_name)
+			num_name = []
+			phone_ow = requests.get('https://phonebook.space/?number=%2B380666630285').text
+			content = BS(phone_ow, 'html.parser').find('div', class_='results')
+			for i in content.find_all('li'):
+				num_name.append(i.text.strip())
+			name = ', '.join(num_name)
+			user_all_info = "{name}"
+			print(user_all_info)
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def any_msg(message):
