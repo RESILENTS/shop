@@ -33,7 +33,6 @@ def get_car_model(message):
 
 def usernameSearch(self): 
     global username_check_a
-    
-        twitter_i = bot.send_message(message.from_user.id, ' ➖ *Twitter:* https://twitter.com/' + username_check_a, parse_mode='Markdown')
+    bot.send_message(message.from_user.id, ' ➖ *Twitter:* https://twitter.com/' + username_check_a, parse_mode='Markdown')
 	
 bot.polling(none_stop=True)
