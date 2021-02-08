@@ -33,7 +33,8 @@ def any_msg(message):
         keyboard.add(btn1, btn2)
         keyboard.add(btn3, btn4)
         bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:", reply_markup=keyboard)
-	
+
+def car_ua():
     if message.text == "🔍 Поиск 🚙":
         global auto_number
         auto_number = message.text
