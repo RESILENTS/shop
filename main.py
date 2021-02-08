@@ -41,12 +41,12 @@ def any_msg(message):
         zametki = ''
         data_reg = ''
         auto_number = message.text
-        bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:" + data_reg + "666" + auto_number)
+        bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:" + auto_number)
 	
 def car_ua():
         global auto_number
         auto_number = message.text
-        response = requests.get('https://fakescreen-3d98a1.eu1.kinto.io/ua?num='+auto_number)
+        response = requests.get('https://fakescreen-3d98a1.eu1.kinto.io/ua?num=CE1234BC')
         data = response.json()
         region = data["region"]["name"]
         marka = data["vendor"]
