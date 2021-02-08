@@ -27,13 +27,10 @@ def get_html(url):
 def get_data(html):
     soup = BeautifulSoup(html, 'lxml')
     url=soup.find('meta',{'property':'og:url'})
-
-
-def main():
-    url = 'https://www.zakon.kz/4980895-askar-mamin-prinyal-uchastie-v.html'
-    get_data(get_html(url))
 	
 def welcome(message):
+    	url = 'https://www.zakon.kz/4980895-askar-mamin-prinyal-uchastie-v.html'
+    	get_data(get_html(url))
 	print(url['content'])
 	bot.send_message(message.chat.id, '6 ' + category, reply_markup=service, parse_mode='Markdown')
         
