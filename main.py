@@ -18,6 +18,10 @@ service = telebot.types.ReplyKeyboardMarkup(True)
 service.row('🔍 Начать поиск')
 service.row('ℹ️ FAQ', '📈 Канал')
 
+service1 = telebot.types.ReplyKeyboardMarkup(True)
+service1.row('🔍 Выполнить поиск')
+service1.row('🏠 Главное меню')
+
 @bot.message_handler(commands = ['start'])
 def welcome(message):	
 	bot.send_message(message.chat.id, '6 7', reply_markup=service, parse_mode='Markdown')
@@ -48,9 +52,6 @@ def callback_inline(call):
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="🇺🇦 Все доступные инструменты для поиска нужной вам информации.", reply_markup=keyboard)
             
         if call.data == "uabtn1_1":
-            service1 = telebot.types.ReplyKeyboardMarkup(True)
-            service1.row('🔍 Выполнить поиск')
-	    service1.row('🏠 Главное меню')
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="🔍 Поиск информации о автомобиле по гос. номеру:\n\nℹ️ Введите номер авто для проверки, пример номера *AA1234BB*", reply_markup=service1, parse_mode='Markdown')
 	
         if call.data == "otherosint":
