@@ -76,7 +76,7 @@ def callback_inline(call):
             btn1 = types.InlineKeyboardButton(text="🧑‍ Женский", callback_data="otherosint_1_1")
             btn2 = types.InlineKeyboardButton(text="👨‍ Мужской", callback_data="otherosint_1_2")
             keyboard.add(btn1,btn2)
-            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="{birthday['date']} 👥 Генератор фейк данных:\n\nВыберите нужный вам пол для генерации данных.", reply_markup=keyboard)
+            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="👥 Генератор фейк данных:\n\nВыберите"+{birthday['date']}+" нужный вам пол для генерации данных.", reply_markup=keyboard)
 
         
 bot.polling(none_stop=True)
