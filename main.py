@@ -19,10 +19,10 @@ service.row('ℹ️ FAQ', '📈 Канал')
 
 @bot.message_handler(commands=['start'])
 def welcome(message):
-    url = 'https://quotes.toscrape.com/'
+    url = 'https://phonebook.space/?input=%2B380666630285'
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'lxml')
-    quotes = soup.find_all('span', class_='text')
+    quotes = soup.find_all('li', class_='text')
 
     for quote in quotes:
         print(quote.text)
