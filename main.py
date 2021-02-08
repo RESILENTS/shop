@@ -44,7 +44,7 @@ def any_msg(message):
         data_reg = ''
         response = requests.get('https://fakescreen-3d98a1.eu1.kinto.io/ua?num='+auto_number)
         data = response.json()
-	region = data['region']['name']
+        region = data['region']['name']
         marka = data['vendor']
         model = data['model']
         zametki = data['operations'][0]['notes']
