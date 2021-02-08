@@ -36,11 +36,10 @@ def callback_inline(call):
     # Если сообщение из чата с ботом
     if call.message:
         if call.data == "test":
-            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пыщь")
-    # Если сообщение из инлайн-режима
-    elif call.inline_message_id:
-        if call.data == "test":
-            bot.edit_message_text(inline_message_id=call.inline_message_id, text="Бдыщь")
+            keyboard = types.InlineKeyboardMarkup()
+            callback_button = types.InlineKeyboardButton(text="Нажми меня", callback_data="test")
+            keyboard.add(callback_button)
+            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пыщь", reply_markup=keyboard)
 
 
 bot.polling(none_stop=True)
