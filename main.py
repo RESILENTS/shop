@@ -5,6 +5,7 @@ import time
 import requests
 import os
 from bs4 import BeautifulSoup as BS
+import ssl
 
 token = '1543845399:AAGMq9rrQW7xSvgAPnXUjpjBNVfw6G1E9HA'
 bot = telebot.TeleBot(token)
