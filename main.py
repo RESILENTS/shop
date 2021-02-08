@@ -20,23 +20,19 @@ service.row('ℹ️ FAQ', '📈 Канал')
 
 
 @bot.message_handler(commands = ['start'])
-def get_html(url):
-    r = requests.get(url)
-    return r.text
-
-def get_data(html):
-    soup = BeautifulSoup(html, 'lxml')
-    url=soup.find('Реєстрація:',{'strong':'div'})
-
-    print(url['content'])
-
-def main():
-    url = 'https://baza-gai.com.ua/nomer/CE1234BC'
-    get_data(get_html(url))
-
 def welcome(message):
-	print(url['content'])
-	bot.send_message(message.chat.id, '6 ' + category, reply_markup=service, parse_mode='Markdown')
+			headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; ) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4086.0 Safari/537.36","Connection": "keep-alive","Host": "iknowwhatyoudownload.com","Referer": "https://iknowwhatyoudownload.com"}
+			page = requests.get("https://baza-gai.com.ua/nomer/CE1234BC", headers=headers)
+			soup = BS(page.content, "html.parser")
+			table = soup.find(class_="d-md-none").find("div")
+			torrents = table.find_all("strong")
+			for torrent in torrents:
+				first, last = torrent.find_all(class_="date-column")
+				first, last = first.text, last.text
+				category = torrent.find(class_="Прикмети:").text
+				name = torrent.find(class_="name-column").text.replace("\n", '').replace('    ', '')
+				size = torrent.find(class_="size-column").text
+			bot.send_message(message.chat.id, '6 ' + category, reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def any_msg(message):
