@@ -80,6 +80,7 @@ def callback_inline(call):
 	
 def auto_number_check(message):
     global auto_number_a
+    message = ''
     auto_number_a = message.text.upper()
     expire = auto_number_check2(message.from_user.id)
     bot.send_message(message.from_user.id, auto_infos)
