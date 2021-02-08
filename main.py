@@ -34,22 +34,33 @@ def any_msg(message):
         bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:", reply_markup=keyboard)
 	
     if message.text == "🔍 Поиск 🚙":
-        global auto_number
-        auto_number = message.text
-        marka = ''
-        region = ''
-        model = ''
-        zametki = ''
-        data_reg = ''
-        response = requests.get('https://fakescreen-3d98a1.eu1.kinto.io/ua?num=' + auto_number)
-        data = response.json()
-        region = data["region"]["name"]
-        marka = data["vendor"]
-        model = data["model"]
-        zametki = data["operations"][0]["notes"]
-        data_reg = data["operations"][0]["regAt"]
-        bot.send_message(message.chat.id, "▫️ Марка авто: " +marka+ "\n▫️ Регион: " +region+ "\n▫️ Модель: " +model+ "\n▫️ Заметки: " +zametki+ "\n▫️ Дата последней регистрации: " + data_reg)
-        
+        auto_number = bot.send_message(message.from_user.id, 'Введите регистрационный номер:')
+        bot.register_next_step_handler(auto_number, auto_number_check)
+
+def auto_number_check(message):
+    global auto_number_a
+    auto_number_a = message.text.upper()
+    expire = auto_number_check2(message.from_user.id)
+    bot.send_message(message.from_user.id, twitter_i)
+
+def auto_number_check2(self): 
+    global auto_number_a
+    auto_number = message.text
+    marka = ''
+    region = ''
+    model = ''
+    zametki = ''
+    data_reg = ''
+    response = requests.get('https://fakescreen-3d98a1.eu1.kinto.io/ua?num=' + auto_number_a)
+    data = response.json()
+    region = data["region"]["name"]
+    marka = data["vendor"]
+    model = data["model"]
+    zametki = data["operations"][0]["notes"]
+    data_reg = data["operations"][0]["regAt"]
+    bot.send_message(message.chat.id, "▫️ Марка авто: " +marka+ "\n▫️ Регион: " +region+ "\n▫️ Модель: " +model+ "\n▫️ Заметки: " +zametki+ "\n▫️ Дата последней регистрации: " + data_reg)
+
+
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
     if call.message:
