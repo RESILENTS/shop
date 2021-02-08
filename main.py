@@ -41,6 +41,9 @@ def handle_text(message):
         keyboard.add(btn3, btn4)
         bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:", reply_markup=keyboard)
 
+    if message.text == "🏠 На главную":  
+        bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:", reply_markup=service)
+
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
@@ -82,7 +85,7 @@ def callback_inline(call):
 	
         if call.data == "uabtn1_1":
             service1 = telebot.types.ReplyKeyboardMarkup(True)
-            service1.row('🔍 Поиск 🚙', '🏠 На главную')
+            service1.row('🔍 Поиск данных', '🏠 На главную')
             uabtn1_1_message = bot.send_message(chat_id=call.message.chat.id, text="🔍 Поиск информации о автомобиле по гос. номеру:\n\nℹ️ Отправь мне номер авто для проверки, пример номера *AA1234BB.*", reply_markup=service1, parse_mode='Markdown')
             bot.register_next_step_handler(uabtn1_1_message, auto_number_check)
 	
