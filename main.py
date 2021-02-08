@@ -23,17 +23,6 @@ def welcome(message):
 	bot.send_message(message.chat.id, '6 7', reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
-def any_msg(message):
-    if message.text == "🔍 Поиск данных":  
-        keyboard = types.InlineKeyboardMarkup()
-        btn1 = types.InlineKeyboardButton(text="🇺🇦 Украина", callback_data="uabtn")
-        btn2 = types.InlineKeyboardButton(text="🇷🇺 Россия", callback_data="test")
-        btn3 = types.InlineKeyboardButton(text="🇰🇿 Казахстан", callback_data="test")
-        btn4 = types.InlineKeyboardButton(text="🇧🇾 Беларусь", callback_data="test")
-        keyboard.add(btn1, btn2)
-        keyboard.add(btn3, btn4)
-        bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:", reply_markup=keyboard)
-
 def car_ua():
         global auto_number
         auto_number = message.text
@@ -49,11 +38,23 @@ def car_ua():
         model = data["model"]
         zametki = data["operations"][0]["notes"]
         data_reg = data["operations"][0]["regAt"]
+
+def any_msg(message):
+    if message.text == "🔍 Поиск данных":  
+        keyboard = types.InlineKeyboardMarkup()
+        btn1 = types.InlineKeyboardButton(text="🇺🇦 Украина", callback_data="uabtn")
+        btn2 = types.InlineKeyboardButton(text="🇷🇺 Россия", callback_data="test")
+        btn3 = types.InlineKeyboardButton(text="🇰🇿 Казахстан", callback_data="test")
+        btn4 = types.InlineKeyboardButton(text="🇧🇾 Беларусь", callback_data="test")
+        keyboard.add(btn1, btn2)
+        keyboard.add(btn3, btn4)
+        bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:", reply_markup=keyboard)
 	
     if message.text == "🔍 Поиск 🚙":
         global auto_number
         auto_number = message.text
         bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:" + data_reg + '666' + auto_number, reply_markup=keyboard)
+	
         
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
