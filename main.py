@@ -5,6 +5,7 @@ import time
 import requests
 from grab import Grab
 import os
+from bs4 import BeautifulSoup as BS
 
 token = '1543845399:AAGMq9rrQW7xSvgAPnXUjpjBNVfw6G1E9HA'
 bot = telebot.TeleBot(token)
@@ -12,7 +13,6 @@ ADMIN_CHAT_ID = 641892529
 
 chat_ids_file = 'chat_ids.txt'
 d = ''
-BS = ''
 
 service = telebot.types.ReplyKeyboardMarkup(True)
 service.row('🔍 Начать поиск')
@@ -20,6 +20,9 @@ service.row('ℹ️ FAQ', '📈 Канал')
 
 
 @bot.message_handler(commands=['start'])
+def get_html(url):
+	return requests.get(url).text
+
 def parse_ua(tutilka):
 	soup = BS(tutilka, 'html.parser')
 	for date in soup.findAll('td'):
@@ -30,7 +33,7 @@ def parse_ua(tutilka):
 			elif '\n' in g:
 				g = g.replace("\n", "")
 			else:
-				print('546546'+g)
+				print('6777'+g)
 def welcome(message):
 	num_name = ''
 	soup = BS(tutilka, 'html.parser')
