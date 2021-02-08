@@ -22,7 +22,7 @@ def welcome(message):
     url = 'https://phonebook.space/?input=%2B380666630285'
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'lxml')
-    quotes = soup.find_all('li', class_='text')
+    quotes = soup.find_all('li', class_='results')
 
     for quote in quotes:
         print(quote.text)
