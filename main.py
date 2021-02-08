@@ -3,7 +3,6 @@ from telebot import types
 import random
 import time
 import requests
-from grab import Grab
 import os
 from bs4 import BeautifulSoup as BS
 
@@ -32,7 +31,7 @@ def get_data(html):
     print(url['content'])
 
 def main():
-    url = 'view-source:https://baza-gai.com.ua/nomer/CE1234BC'
+    url = 'https://baza-gai.com.ua/nomer/CE1234BC'
     get_data(get_html(url))
 
 def welcome(message):
