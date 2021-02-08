@@ -15,7 +15,7 @@ user_city = ''
 
 
 service = telebot.types.ReplyKeyboardMarkup(True)
-service.row('🔍 Начать поиск')
+service.row('🔍 Поиск данных', '⚙️ Разные инструменты')
 service.row('ℹ️ FAQ', '📈 Канал')
 
 @bot.message_handler(commands = ['start'])
@@ -24,16 +24,14 @@ def welcome(message):
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def any_msg(message):
-    if message.text == "🔍 Начать поиск":  
+    if message.text == "🔍 Поиск данных":  
         keyboard = types.InlineKeyboardMarkup()
         btn1 = types.InlineKeyboardButton(text="🇺🇦 Украина", callback_data="uabtn")
         btn2 = types.InlineKeyboardButton(text="🇷🇺 Россия", callback_data="test")
         btn3 = types.InlineKeyboardButton(text="🇰🇿 Казахстан", callback_data="test")
         btn4 = types.InlineKeyboardButton(text="🇧🇾 Беларусь", callback_data="test")
-        btn5 = types.InlineKeyboardButton(text="⚙️ Разные OSINT инструменты", callback_data="otherosint")
         keyboard.add(btn1, btn2)
         keyboard.add(btn3, btn4)
-        keyboard.add(btn5)
         bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:", reply_markup=keyboard)
         
 @bot.callback_query_handler(func=lambda call: True)
@@ -41,16 +39,15 @@ def callback_inline(call):
     if call.message:
         if call.data == "uabtn":
             keyboard = types.InlineKeyboardMarkup()
-            btn1 = types.InlineKeyboardButton(text="🔍 Поиск по Государственному Номеру", callback_data="uabtn1_1")
-            btn2 = types.InlineKeyboardButton(text="🔍 Поиск по Номеру Телефона", callback_data="test")
+            btn1 = types.InlineKeyboardButton(text="🔍 Поиск авто по гос номеру", callback_data="uabtn1_1")
+            btn2 = types.InlineKeyboardButton(text="🔍 Поиск по номеру телефона", callback_data="test")
             keyboard.add(btn1)
             keyboard.add(btn2)
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="🇺🇦 Все доступные инструменты для поиска нужной вам информации.", reply_markup=keyboard)
             
         if call.data == "uabtn1_1":
             service1 = telebot.types.ReplyKeyboardMarkup(True)
-            service1.row('🔍 Выполнить поиск')
-            service1.row('🏠 Главное меню')
+            service1.row('🔍 Поиск', )
             bot.send_message(chat_id=call.message.chat.id, text="🔍 Поиск информации о автомобиле по гос. номеру:\n\nℹ️ Введите номер авто для проверки, пример номера *AA1234BB*", reply_markup=service1, parse_mode='Markdown')
 	
         if call.data == "otherosint":
