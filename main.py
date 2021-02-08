@@ -28,8 +28,8 @@ def welcome(message):
 			for i in content.find_all('li'):
 				num_name.append(i.text.strip())
 			name = ', '.join(num_name)
-			user_all_info = name
-			bot.send_message(message.chat.id, num_name, reply_markup=service, parse_mode='Markdown')
+			user_all_info = num_name
+			bot.send_message(message.chat.id, user_all_info, reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def any_msg(message):
