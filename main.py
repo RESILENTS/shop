@@ -99,8 +99,8 @@ def auto_number_check(message):
     year = data["year"]
     zametki = data["operations"][0]["notes"]
     data_reg = data["operations"][0]["regAt"]
-    adress = data["operations"][0]["address"]
+    address = data["operations"][0]["address"]
 
-    bot.send_message(message.chat.id, "▪️ Результат поиска по номеру: *"+auto_number_a+"*\n\n▪️ Марка авто: *" +marka+ "*\n▪️ Регион: *" +region+ "*\n▪️ Модель: *" +model+ "*\n▪️ Год выпуска: *" +year+ "*\n▪️ Заметки: *" +zametki+ "*\n▪️ Дата последней регистрации: *" +data_reg+"*\n▪️ Адресс регистрации: *" + adress + "*", parse_mode='Markdown')
+    bot.send_message(message.chat.id, "▪️ Результат поиска по номеру: *"+auto_number_a+"*\n\n▪️ Марка авто: *" +marka+ "*\n▪️ Регион: *" +region+ "*\n▪️ Модель: *" +model+ "*\n▪️ Год выпуска: *" +year+ "*\n▪️ Заметки: *" +zametki+ "*\n▪️ Дата последней регистрации: *" +data_reg+"*\n▪️ Адресс регистрации: *" + address + "*", parse_mode='Markdown')
         
 bot.polling(none_stop=True)
