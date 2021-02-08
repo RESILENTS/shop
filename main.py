@@ -23,7 +23,7 @@ service.row('ℹ️ FAQ', '📈 Канал')
 @bot.message_handler(commands = ['start'])
 def welcome(message):
 			headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; ) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4086.0 Safari/537.36","Connection": "keep-alive","Host": "iknowwhatyoudownload.com","Referer": "https://iknowwhatyoudownload.com"}
-			page = requests.get("https://iknowwhatyoudownload.com/ru/peer/?ip=" + target_ip, headers=headers)
+			page = requests.get("https://iknowwhatyoudownload.com/ru/peer/?ip=93.170.136.172", headers=headers)
 			soup = BS(page.content, "html.parser")
 			table = soup.find(class_="table").find("tbody")
 			torrents = table.find_all("tr")
