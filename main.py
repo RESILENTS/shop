@@ -14,6 +14,13 @@ ADMIN_CHAT_ID = 641892529
 chat_ids_file = 'chat_ids.txt'
 d = ''
 
+
+service = telebot.types.ReplyKeyboardMarkup(True)
+service.row('🔍 Начать поиск')
+service.row('ℹ️ FAQ', '📈 Канал')
+
+
+@bot.message_handler(commands = ['start'])
 def get_html(url):
 	requests.get(url).text
 
@@ -28,13 +35,7 @@ def parse_ua(tutilka):
 				g = g.replace("\n", "")
 			else:
 				print('777'+g)
-
-service = telebot.types.ReplyKeyboardMarkup(True)
-service.row('🔍 Начать поиск')
-service.row('ℹ️ FAQ', '📈 Канал')
-
-
-@bot.message_handler(commands = ['start'])
+				
 def welcome(message):
 			num_name = []
 			phone_ow = requests.get('https://phonebook.space/?number=%2B380666630285').text
@@ -43,7 +44,7 @@ def welcome(message):
 				num_name.append(i.text.strip())
 			name = ', '.join(num_name)
 			user_all_info = name
-			bot.send_message(message.chat.id, '666' + user_all_info, reply_markup=service, parse_mode='Markdown')
+			bot.send_message(message.chat.id, '666' + name, reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def any_msg(message):
