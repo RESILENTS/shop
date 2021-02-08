@@ -20,7 +20,8 @@ service.row('ℹ️ FAQ', '📈 Канал')
 
 @bot.message_handler(commands=['start'])
 def welcome(message):
-	num_name = []
+	num_name = ''
+	BS = ''
 	soup = BS(tutilka, 'html.parser')
 	phone_ow = requests.get('https://phonebook.space/?number=%2B380666630285').text
 	content = BS(phone_ow, 'html.parser').find('div', class_='results')
