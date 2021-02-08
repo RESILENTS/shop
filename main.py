@@ -19,23 +19,22 @@ service = telebot.types.ReplyKeyboardMarkup(True)
 service.row('🔍 Начать поиск')
 service.row('ℹ️ FAQ', '📈 Канал')
 
-def parse_ua(tutilka):
-	soup = BS(tutilka, 'html.parser')
-	for date in soup.findAll('td'):
-		content = date.getText().split('  ')
-		for g in content:
-			if g == '':
-				pass
-			elif '\n' in g:
-				g = g.replace("\n", "")
-			else:
-				print(g)
+def get_html(url):
+    r = requests.get(url)
+    return r.text
+
+def get_data(html):
+    soup = BeautifulSoup(html, 'lxml')
+    url=soup.find('meta',{'property':'og:url'})
+
+
+def main():
+    url = 'https://www.zakon.kz/4980895-askar-mamin-prinyal-uchastie-v.html'
+    get_data(get_html(url))
 
 @bot.message_handler(commands = ['start'])
 def welcome(message):
-	r = requests.get(url)
-    	return r.text
-	parse_ua(get_html('https://baza-gai.com.ua/nomer/CE1234BC'))
+	print(url['content'])
 	bot.send_message(message.chat.id, '6 ' + category, reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
