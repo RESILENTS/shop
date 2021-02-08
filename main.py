@@ -16,6 +16,6 @@ def start(message):
 
 def hello(message):
     bot.send_message(message.chat.id, 'Thank you!')
-    bot.send_message(message.chat.id + ' | ' + message.text)
+    bot.send_message(message.chat.id, '657567' + message.text)
 	
 bot.polling(none_stop=True)
