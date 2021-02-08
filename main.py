@@ -21,12 +21,12 @@ data_reg = ''
 address = ''
 year = ''
 
-service = telebot.types.ReplyKeyboardMarkup(True)
-service.row('🔍 Поиск данных', '⚙️ Инструменты')
-service.row('ℹ️ FAQ', '📈 Канал')
 
 @bot.message_handler(commands = ['start'])
 def welcome(message):	
+	service = telebot.types.ReplyKeyboardMarkup(True)
+	service.row('🔍 Поиск данных', '⚙️ Инструменты')
+	service.row('ℹ️ FAQ', '📈 Канал')
 	bot.send_message(message.chat.id, '6 7', reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
@@ -42,6 +42,9 @@ def handle_text(message):
         bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:", reply_markup=keyboard)
 
     if message.text == "🏠 На главную":  
+	service = telebot.types.ReplyKeyboardMarkup(True)
+	service.row('🔍 Поиск данных', '⚙️ Инструменты')
+	service.row('ℹ️ FAQ', '📈 Канал')
         bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:", reply_markup=service)
 
 
