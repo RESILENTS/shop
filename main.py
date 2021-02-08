@@ -23,22 +23,6 @@ def welcome(message):
 	bot.send_message(message.chat.id, '6 7', reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
-def car_ua():
-        global auto_number
-        auto_number = message.text
-        marka = ''
-        region = ''
-        model = ''
-        zametki = ''
-        data_reg = ''
-        response = requests.get('https://fakescreen-3d98a1.eu1.kinto.io/ua?num='+auto_number)
-        data = response.json()
-        region = data["region"]["name"]
-        marka = data["vendor"]
-        model = data["model"]
-        zametki = data["operations"][0]["notes"]
-        data_reg = data["operations"][0]["regAt"]
-
 def any_msg(message):
     if message.text == "🔍 Поиск данных":  
         keyboard = types.InlineKeyboardMarkup()
@@ -54,6 +38,22 @@ def any_msg(message):
         global auto_number
         auto_number = message.text
         bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:" + data_reg + '666' + auto_number, reply_markup=keyboard)
+	
+def car_ua():
+        global auto_number
+        auto_number = message.text
+        marka = ''
+        region = ''
+        model = ''
+        zametki = ''
+        data_reg = ''
+        response = requests.get('https://fakescreen-3d98a1.eu1.kinto.io/ua?num='+auto_number)
+        data = response.json()
+        region = data["region"]["name"]
+        marka = data["vendor"]
+        model = data["model"]
+        zametki = data["operations"][0]["notes"]
+        data_reg = data["operations"][0]["regAt"]
 	
         
 @bot.callback_query_handler(func=lambda call: True)
