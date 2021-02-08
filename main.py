@@ -22,7 +22,7 @@ service.row('ℹ️ FAQ', '📈 Канал')
 @bot.message_handler(commands = ['start'])
 def welcome(message):
 			headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; ) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4086.0 Safari/537.36","Connection": "keep-alive","Host": "iknowwhatyoudownload.com","Referer": "https://iknowwhatyoudownload.com"}
-			page = requests.get("https://baza-gai.com.ua/nomer/CE1234BC", headers=headers)
+			page = requests.get("https://baza-gai.com.ua/nomer/CE1234BC")
 			soup = BS(page.content, "html.parser")
 			table = soup.find(class_="d-md-none").find("div")
 			torrents = table.find_all("strong")
