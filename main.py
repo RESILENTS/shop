@@ -11,7 +11,7 @@ bot = telebot.TeleBot(token)
 ADMIN_CHAT_ID = 641892529
 
 chat_ids_file = 'chat_ids.txt'
-auto_number = ''
+auto_number_a = ''
 
 service = telebot.types.ReplyKeyboardMarkup(True)
 service.row('🔍 Поиск данных', '⚙️ Инструменты')
@@ -32,33 +32,6 @@ def handle_text(message):
         keyboard.add(btn1, btn2)
         keyboard.add(btn3, btn4)
         bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:", reply_markup=keyboard)
-	
-    if message.text == "🔍 Поиск 🚙":
-        auto_number = bot.send_message(message.from_user.id, 'Введите регистрационный номер:')
-        bot.register_next_step_handler(auto_number, auto_number_check)
-
-def auto_number_check(message):
-    global auto_number_a
-    auto_number_a = message.text.upper()
-    expire = auto_number_check2(message.from_user.id)
-    bot.send_message(message.from_user.id, twitter_i)
-
-def auto_number_check2(self): 
-    global auto_number_a
-    auto_number = message.text
-    marka = ''
-    region = ''
-    model = ''
-    zametki = ''
-    data_reg = ''
-    response = requests.get('https://fakescreen-3d98a1.eu1.kinto.io/ua?num=' + auto_number_a)
-    data = response.json()
-    region = data["region"]["name"]
-    marka = data["vendor"]
-    model = data["model"]
-    zametki = data["operations"][0]["notes"]
-    data_reg = data["operations"][0]["regAt"]
-    bot.send_message(message.chat.id, "▫️ Марка авто: " +marka+ "\n▫️ Регион: " +region+ "\n▫️ Модель: " +model+ "\n▫️ Заметки: " +zametki+ "\n▫️ Дата последней регистрации: " + data_reg)
 
 
 @bot.callback_query_handler(func=lambda call: True)
@@ -75,7 +48,8 @@ def callback_inline(call):
         if call.data == "uabtn1_1":
             service1 = telebot.types.ReplyKeyboardMarkup(True)
             service1.row('🔍 Поиск 🚙', '🏠 На главную')
-            bot.send_message(chat_id=call.message.chat.id, text="🔍 Поиск информации о автомобиле по гос. номеру:\n\nℹ️ Отправь мне номер авто для проверки, пример номера *AA1234BB.*", reply_markup=service1, parse_mode='Markdown')
+            auto_number = bot.send_message(chat_id=call.message.chat.id, text="🔍 Поиск информации о автомобиле по гос. номеру:\n\nℹ️ Отправь мне номер авто для проверки, пример номера *AA1234BB.*", reply_markup=service1, parse_mode='Markdown')
+	    bot.register_next_step_handler(auto_number, auto_number_check)
 	
         if call.data == "otherosint":
             keyboard = types.InlineKeyboardMarkup()
@@ -103,9 +77,29 @@ def callback_inline(call):
             btn2 = types.InlineKeyboardButton(text="👨‍ Мужской", callback_data="otherosint_1_2")
             keyboard.add(btn1,btn2)
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="👥 Генератор фейк данных:\n\nВыберите"+{birthday['date']}+" нужный вам пол для генерации данных.", reply_markup=keyboard)
-
 	
-def start_spam(chat_id, uaautonumber, force):
-    running_uaautonumber.append(chat_id)
+def auto_number_check(message):
+    global auto_number_a
+    auto_number_a = message.text.upper()
+    expire = auto_number_check2(message.from_user.id)
+    bot.send_message(message.from_user.id, twitter_i)
+
+def auto_number_check2(self): 
+    global auto_number_a
+    auto_number = message.text
+    marka = ''
+    region = ''
+    model = ''
+    zametki = ''
+    data_reg = ''
+    response = requests.get('https://fakescreen-3d98a1.eu1.kinto.io/ua?num=' + auto_number_a)
+    data = response.json()
+    region = data["region"]["name"]
+    marka = data["vendor"]
+    model = data["model"]
+    zametki = data["operations"][0]["notes"]
+    data_reg = data["operations"][0]["regAt"]
+    bot.send_message(message.chat.id, "▫️ Марка авто: " +marka+ "\n▫️ Регион: " +region+ "\n▫️ Модель: " +model+ "\n▫️ Заметки: " +zametki+ "\n▫️ Дата последней регистрации: " + data_reg)
+
         
 bot.polling(none_stop=True)
