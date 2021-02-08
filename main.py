@@ -41,8 +41,8 @@ def callback_inline(call):
     if call.message:
         if call.data == "uabtn":
             keyboard = types.InlineKeyboardMarkup()
-            btn1 = types.InlineKeyboardButton(text="🇺🇦 Поиск по Государственному Номеру", callback_data="uabtn")
-            btn2 = types.InlineKeyboardButton(text="🇺🇦 Поиск по Номеру Телефона", callback_data="test")
+            btn1 = types.InlineKeyboardButton(text="🔍 Поиск по Государственному Номеру", callback_data="uabtn")
+            btn2 = types.InlineKeyboardButton(text="🔍 Поиск по Номеру Телефона", callback_data="test")
             keyboard.add(btn1)
             keyboard.add(btn2)
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="🇺🇦 Все доступные инструменты для поиска нужной вам информации.", reply_markup=keyboard)
