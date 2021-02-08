@@ -14,6 +14,21 @@ ADMIN_CHAT_ID = 641892529
 chat_ids_file = 'chat_ids.txt'
 d = ''
 
+def get_html(url):
+	requests.get(url).text
+
+def parse_ua(tutilka):
+	soup = BS(tutilka, 'html.parser')
+	for date in soup.findAll('td'):
+		content = date.getText().split('  ')
+		for g in content:
+			if g == '':
+				pass
+			elif '\n' in g:
+				g = g.replace("\n", "")
+			else:
+				print('777'+g)
+
 service = telebot.types.ReplyKeyboardMarkup(True)
 service.row('🔍 Начать поиск')
 service.row('ℹ️ FAQ', '📈 Канал')
