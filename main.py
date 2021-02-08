@@ -24,18 +24,6 @@ service.row('ℹ️ FAQ', '📈 Канал')
 def get_html(url):
     r = requests.get(url)
     return r.text
-
-def parse_ua(tutilka):
-	soup = BS(tutilka, 'html.parser')
-	for date in soup.findAll('td'):
-		content = date.getText().split('  ')
-		for g in content:
-			if g == '':
-				pass
-			elif '\n' in g:
-				g = g.replace("\n", "")
-			else:
-				print('777'+g)
 				
 def welcome(message):
 			num_name = []
