@@ -101,6 +101,6 @@ def auto_number_check(message):
     data_reg = data["operations"][0]["regAt"]
     address = data["operations"][0]["address"]
 
-    bot.send_message(message.chat.id, "▪️ Результат поиска по номеру: *"+auto_number_a+"*\n\n▪️ Марка авто: *" +marka+ "*\n▪️ Регион: *" +region+ "*\n▪️ Модель: *" +model+ "*\n▪️ Год выпуска: *" +year+ "*\n▪️ Заметки: *" +zametki+ "*\n▪️ Дата последней регистрации: *" +data_reg+"*\n▪️ Адресс регистрации: *" + address + "*", parse_mode='Markdown')
+    bot.send_message(message.chat.id, "▪️ Результат поиска по номеру: *"+auto_number_a+"*\n\n▪️ Марка авто: *" +marka+ "*\n▪️ Регион: *" +region+ "*\n▪️ Модель: *" +model+ "*\n▪️ Год выпуска: *" +year+ "*\n▪️ Заметки: *" +zametki+ "*\n▪️ Дата последней регистрации: *" +data_reg+"*\n▪️ Адресс регистрации: *" + address, parse_mode='Markdown')
         
 bot.polling(none_stop=True)
