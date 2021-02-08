@@ -11,7 +11,7 @@ bot = telebot.TeleBot(token)
 ADMIN_CHAT_ID = 641892529
 
 chat_ids_file = 'chat_ids.txt'
-d = ''
+user_city = ''
 
 
 service = telebot.types.ReplyKeyboardMarkup(True)
@@ -22,14 +22,7 @@ service.row('ℹ️ FAQ', '📈 Канал')
 def welcome(message):
 	response = requests.get('https://fakescreen-3d98a1.eu1.kinto.io/ua?num=CE1234BC')
 	data = response.json()
-	user_country = data[ 'country' ][ 'english' ]
-	user_id = data[ 'country' ][ 'id' ]
-	user_location = data[ 'country' ][ 'location' ]
 	user_city = data['region']['name']
-	user_lat = data[ 'capital' ][ 'latitude' ]
-	user_log = data[ 'capital' ][ 'longitude' ]
-	user_post = data[ 'capital' ][ 'post' ]
-	user_oper = data[ '0' ][ 'oper' ]
 	print(user_city)	
 	bot.send_message(message.chat.id, '6 7', reply_markup=service, parse_mode='Markdown')
         
