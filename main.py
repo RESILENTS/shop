@@ -84,12 +84,12 @@ def callback_inline(call):
 def getcontact(message):
     global ru_number_a
     ru_number_a = message.text
-    response = requests.get('http://rosreestr.subnets.ru/?get=num&num=' + ru_number_a)
-    data = response.json()
-    operator = data["0"]["operator"]
-    region1 = data["0"]["region"]
+    response = requests.get('https://rosreestr.subnets.ru/?get=num&num=' + ru_number_a)
+    data1 = response.json()
+    operator = data1["0"]["operator"]
+    region1 = data1["0"]["region"]
     keyboard = types.InlineKeyboardMarkup()
-    btn1 = types.InlineKeyboardButton(text="🔍 Новый поиск", callback_data="uabtn1_1")
+    btn1 = types.InlineKeyboardButton(text="🔍 Новый поиск", callback_data="uabtn1_2")
     keyboard.add(btn1)
     bot.send_message(message.chat.id, "*🔍 Результат поиска по гос номеру: "+ru_number_a+"\n\n▪️ Оператор: "+operator+"\n▪️ Регион: "+region1, reply_markup=keyboard, parse_mode='Markdown')
 		
