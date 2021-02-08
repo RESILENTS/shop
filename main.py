@@ -70,21 +70,21 @@ def callback_inline(call):
             keyboard.add(btn2)
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="🇺🇦 Все доступные инструменты для поиска нужной вам информации.", reply_markup=keyboard)  
 
-        if call.data == "uabtn1_2":
+        if call.data == "uabtn1_1":
             uabtn1_1_message = bot.send_message(chat_id=call.message.chat.id, text="🔍 Поиск информации о автомобиле по гос. номеру:\n\nℹ️ Отправь мне номер авто для проверки, пример номера *AA1234BB.*", parse_mode='Markdown')
             bot.register_next_step_handler(uabtn1_1_message, auto_number_check)
 		
-        if call.data == "uabtn1_1":
+        if call.data == "uabtn1_2":
             uabtn1_2_message = bot.send_message(chat_id=call.message.chat.id, text="🔍 Поиск информации о автомобиле по гос. номеру:\n\nℹ️ Отправь мне номер авто для проверки, пример номера *AA1234BB.*", parse_mode='Markdown')
             bot.register_next_step_handler(uabtn1_2_message, getcontact)
 	
-def getcontact():
+def getcontact(message):
     global tel_number_a
     tel_number_a = message.text
     req = requests.get("https://phonebook.space/?input=+" + tel_number_a, headers={"Cookie": "__atuvc=3%7C44%2C4%7C45; __atuvs=5f9e30e7193af6a7003"})
     soup = BeautifulSoup(req.content, 'lxml')
     for result in soup.select("div.results > ul"):
-    bot.send_message(message.chat.id, result.get_text().replace(" ", ""))
+    bot.send_message(message.chat.id, result.get_text())
 		
 def auto_number_check(message):
     global auto_number_a
