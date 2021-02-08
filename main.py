@@ -26,7 +26,7 @@ year = ''
 def welcome(message):	
         service = telebot.types.ReplyKeyboardMarkup(True)
         service.row('🔍 Поиск данных', '⚙️ Инструменты')
-        service.row('ℹ️ FAQ', '📈 Канал')
+        service.row('ℹ️ Руководство', '💎 Наш канал')
         bot.send_message(message.chat.id, '6 7', reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
