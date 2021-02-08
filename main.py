@@ -50,7 +50,7 @@ def callback_inline(call):
         if call.data == "uabtn1_1":
             service1 = telebot.types.ReplyKeyboardMarkup(True)
             service1.row('🔍 Выполнить поиск')
-	    service1.row('🔍 Выполнить поиск')
+	    service1.row('🏠 Главное меню')
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="🔍 Поиск информации о автомобиле по гос. номеру:\n\nℹ️ Введите номер авто для проверки, пример номера *AA1234BB*", reply_markup=service1, parse_mode='Markdown')
 	
         if call.data == "otherosint":
