@@ -12,7 +12,11 @@ ADMIN_CHAT_ID = 641892529
 
 chat_ids_file = 'chat_ids.txt'
 auto_number = ''
-
+marka = ''
+region = ''
+model = ''
+zametki = ''
+data_reg = ''
 
 service = telebot.types.ReplyKeyboardMarkup(True)
 service.row('🔍 Поиск данных', '⚙️ Инструменты')
@@ -42,11 +46,6 @@ def any_msg(message):
 def car_ua():
         global auto_number
         auto_number = message.text
-        marka = ''
-        region = ''
-        model = ''
-        zametki = ''
-        data_reg = ''
         response = requests.get('https://fakescreen-3d98a1.eu1.kinto.io/ua?num='+auto_number)
         data = response.json()
         region = data["region"]["name"]
