@@ -104,7 +104,7 @@ def getcontact(message):
     keyboard = types.InlineKeyboardMarkup()
     btn1 = types.InlineKeyboardButton(text="🔍 Новый поиск", callback_data="uabtn1_2")
     keyboard.add(btn1)
-    bot.send_message(message.chat.id, "*🔍 Информация по номеру: "+ru_number_a+"\n\n▪️ Оператор: "+operator+"\n▪️ Регион: "+region1, reply_markup=keyboard, parse_mode='Markdown')
+    bot.send_message(message.chat.id, "*🚙 Информация по номеру: "+ru_number_a+"\n\n▪️ Оператор: "+operator+"\n▪️ Регион: "+region1, reply_markup=keyboard, parse_mode='Markdown')
 		
 def auto_number_check(message):
     global auto_number_a
@@ -121,6 +121,6 @@ def auto_number_check(message):
     keyboard = types.InlineKeyboardMarkup()
     btn1 = types.InlineKeyboardButton(text="🔍 Новый поиск", callback_data="uabtn1_1")
     keyboard.add(btn1)
-    bot.send_message(message.chat.id, "*🔍 Результат по номеру: "+auto_number_a+"*\n\n*Марка авто:* " +marka+ "\n️*Регион:* " +region+ "\n*Модель:* " +model+ "\n*Заметки:* " +zametki+ "\n*Дата последней регистрации:* " + data_reg, reply_markup=keyboard, parse_mode='Markdown')
+    bot.send_message(message.chat.id, "*🚙 Результат по номеру: "+auto_number_a+"*\n\n*▪️ Марка автомобиля:* " +marka+ "\n️*▪️ Регион регестрации:* " +region+ "\n▪️ *Модель автомобиля:* " +model+ "\n*▪️ Информация:* " +zametki+ "\n*▪️ Дата последней регистрации:* " + data_reg, reply_markup=keyboard, parse_mode='Markdown')
         
 bot.polling(none_stop=True)
