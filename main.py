@@ -26,7 +26,7 @@ def welcome(message):
 				num_name.append(i.text.strip())
 			name = ', '.join(num_name)
 			user_all_info = name
-			print(num_name)
+			print(name)
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def any_msg(message):
