@@ -31,10 +31,7 @@ def handle_text(message):
         keyboard.add(btn1, btn2)
         bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:", reply_markup=keyboard)
         
-
-@bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
-    # Если сообщение из чата с ботом
     if call.message:
         if call.data == "uabtn":
             keyboard = types.InlineKeyboardMarkup()
