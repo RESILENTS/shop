@@ -14,8 +14,8 @@ ADMIN_CHAT_ID = 641892529
 chat_ids_file = 'chat_ids.txt'
 
 service = telebot.types.ReplyKeyboardMarkup(True)
-service.row('🛠 Инструменты', 'ℹ️ Канал бота')
-service.row('📊 Статистика', '🛒 Маркет')
+service.row('🔍 Начать поиск')
+service.row('ℹ️ FAQ', '📈 Канал')
 
 service2 = telebot.types.ReplyKeyboardMarkup(True)
 service2.row('⚙️ Генераторы', '🔍 OSINT')
