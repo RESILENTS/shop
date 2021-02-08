@@ -25,9 +25,7 @@ def get_html(url):
     quotes = soup.find_all('span', class_='text')
 
 def welcome(message):
-    for quote in quotes:
-        print(quote.text)
-        bot.send_message(message.chat.id, ('👋🏽 Добро пожаловать, *' + message.from_user.first_name + '.*'), reply_markup=service, parse_mode='Markdown')
+    bot.send_message(message.chat.id, ('👋🏽 Добро пожаловать, *' + message.from_user.first_name + '.*' + quotes), reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def any_msg(message):
