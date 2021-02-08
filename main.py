@@ -4,7 +4,6 @@ import random
 import time
 import requests
 import os
-from bs4 import BeautifulSoup as BS
 import ssl
 
 token = '1543845399:AAGMq9rrQW7xSvgAPnXUjpjBNVfw6G1E9HA'
@@ -21,11 +20,18 @@ service.row('ℹ️ FAQ', '📈 Канал')
 
 @bot.message_handler(commands = ['start'])
 def welcome(message):
-	url = "https://baza-gai.com.ua/nomer/AA0001AX"
-	r = requests.get(url, headers={"Accept": "application/json"})
-	data = r.json()
-	user_country = data[ 'year' ]
-	bot.send_message(message.chat.id, '6 ' + user_country, reply_markup=service, parse_mode='Markdown')
+			response = requests.get('https://htmlweb.ru/geo/api.php?json&telcod=+380666630285')
+			data = response.json()
+			user_country = data[ 'country' ][ 'english' ]
+			user_id = data[ 'country' ][ 'id' ]
+			user_location = data[ 'country' ][ 'location' ]
+			user_city = data[ 'capital' ][ 'english' ]
+			user_lat = data[ 'capital' ][ 'latitude' ]
+			user_log = data[ 'capital' ][ 'longitude' ]
+			user_post = data[ 'capital' ][ 'post' ]
+			user_oper = data[ '0' ][ 'oper' ]
+			
+	bot.send_message(message.chat.id, '6 ' + user_city, reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def any_msg(message):
