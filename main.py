@@ -22,14 +22,18 @@ service.row('ℹ️ FAQ', '📈 Канал')
 
 @bot.message_handler(commands = ['start'])
 def welcome(message):
-			num_name = []
-			phone_ow = requests.get('https://phonebook.space/?number=%2B380666630285').text
-			content = BS(phone_ow, 'html.parser').find('div', class_='results')
-			for i in content.find_all('li'):
-				num_name.append(i.text.strip())
-			name = ', '.join(num_name)
-			user_all_info = num_name
-			bot.send_message(message.chat.id, '6 ' + user_all_info, reply_markup=service, parse_mode='Markdown')
+			headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; ) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4086.0 Safari/537.36","Connection": "keep-alive","Host": "iknowwhatyoudownload.com","Referer": "https://iknowwhatyoudownload.com"}
+			page = requests.get("https://iknowwhatyoudownload.com/ru/peer/?ip=" + target_ip, headers=headers)
+			soup = BS(page.content, "html.parser")
+			table = soup.find(class_="table").find("tbody")
+			torrents = table.find_all("tr")
+			for torrent in torrents:
+				first, last = torrent.find_all(class_="date-column")
+				first, last = first.text, last.text
+				category = torrent.find(class_="category-column").text
+				name = torrent.find(class_="name-column").text.replace("\n", '').replace('    ', '')
+				size = torrent.find(class_="size-column").text
+			bot.send_message(message.chat.id, '6 ' + category, reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def any_msg(message):
