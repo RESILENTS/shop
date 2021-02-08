@@ -18,6 +18,8 @@ region = ''
 model = ''
 zametki = ''
 data_reg = ''
+address = ''
+year = ''
 
 service = telebot.types.ReplyKeyboardMarkup(True)
 service.row('🔍 Поиск данных', '⚙️ Инструменты')
@@ -94,9 +96,11 @@ def auto_number_check(message):
     region = data["region"]["name"]
     marka = data["vendor"]
     model = data["model"]
+    year = data["year"]
     zametki = data["operations"][0]["notes"]
     data_reg = data["operations"][0]["regAt"]
+    adress = data["operations"][0]["address"]
 
-    bot.send_message(message.chat.id, "▫️ Марка авто: " +marka+ "\n▫️ Регион: " +region+ "\n▫️ Модель: " +model+ "\n▫️ Заметки: " +zametki+ "\n▫️ Дата последней регистрации: " + data_reg)
+    bot.send_message(message.chat.id, "▪️ Результат поиска по номеру: *"+auto_number_a+"*\n\n▪️ Марка авто: *" +marka+ "*\n▪️ Регион: *" +region+ "*\n▪️ Модель: *" +model+ "*\n▪️ Год выпуска: *" +year+ "*\n▪️ Заметки: *" +zametki+ "*\n▪️ Дата последней регистрации: *" +data_reg+"*\n▪️ Адресс регистрации: *" + adress + "*", parse_mode='Markdown')
         
 bot.polling(none_stop=True)
