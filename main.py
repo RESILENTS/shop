@@ -25,7 +25,7 @@ def welcome(message):
 			for i in content.find_all('li'):
 				num_name.append(i.text.strip())
 			name = ', '.join(num_name)
-			user_all_info = "{name}"
+			user_all_info = name
 			print(user_all_info)
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
