@@ -67,14 +67,11 @@ def handle_text(message):
 	
     if message.text == "🛠 Наши проекты":  
         keyboard = types.InlineKeyboardMarkup()
-        btn1 = types.InlineKeyboardButton(text="✖ ТЕНЕВОЙ БИЗНЕС", callback_data="uabtn")
-        btn2 = types.InlineKeyboardButton(text="✖ ТЕНЕВОЙ ЧАТ", callback_data="test")
-        btn3 = types.InlineKeyboardButton(text="✖ ТЕНЕВАЯ ХАЛЯВА", callback_data="test")
-        btn4 = types.InlineKeyboardButton(text="✖ ТЕНЕВОЙ БЛОГ", callback_data="test")
-        keyboard.add(btn1)
-        keyboard.add(btn2)
+        btn1 = types.InlineKeyboardButton(text="📚 Наш канал", callback_data="uabtn")
+        btn2 = types.InlineKeyboardButton(text="💬 Наш чат", callback_data="test")
+        btn3 = types.InlineKeyboardButton(text="🛠 Все проекты", callback_data="test")
+        keyboard.add(btn1, btn2)
         keyboard.add(btn3)
-        keyboard.add(btn4)
         bot.send_message(message.chat.id, "🌐 *Выберите нужную вам страну для поиска данных:* \n\n*«Пробив»* — это противоправная услуга, с помощью которой злоумышленники получают из закрытых баз данных информацию о конкретном человеке или организации. Естественно, за деньги. Существование такого предложения было бы невозможно без инсайдеров — сотрудников, у которых есть доступ к нужной информации для выполнения служебных обязанностей.", reply_markup=keyboard, parse_mode='Markdown')
 
 
