@@ -40,7 +40,7 @@ def callback_inline(call):
             btn2 = types.InlineKeyboardButton(text="🇺🇦 Поиск по Номеру Телефона", callback_data="test")
             keyboard.add(btn1)
             keyboard.add(btn1)
-            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пыщь")
+            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пыщь", reply_markup=keyboard)
             
         if call.data == "test":
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пыщь2")
