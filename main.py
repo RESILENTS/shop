@@ -34,7 +34,7 @@ def any_msg(message):
         btn2 = types.InlineKeyboardButton(text="🇷🇺 Россия", callback_data="test")
         btn3 = types.InlineKeyboardButton(text="🇰🇿 Казахстан", callback_data="test")
         btn4 = types.InlineKeyboardButton(text="🇧🇾 Беларусь", callback_data="test")
-        btn5 = types.InlineKeyboardButton(text="⚙️ Разные OSINT инструменты", callback_data="test")
+        btn5 = types.InlineKeyboardButton(text="⚙️ Разные OSINT инструменты", callback_data="otherosint")
         keyboard.add(btn1, btn2)
         keyboard.add(btn3, btn4)
         keyboard.add(btn5)
@@ -49,11 +49,19 @@ def callback_inline(call):
             btn2 = types.InlineKeyboardButton(text="🔍 Поиск по Номеру Телефона", callback_data="test")
             keyboard.add(btn1)
             keyboard.add(btn2)
-            
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="🇺🇦 Все доступные инструменты для поиска нужной вам информации.", reply_markup=keyboard)
             
-        if call.data == "test":
-            bot.edit_message_text(chat_id=call.message.chat.id, message_id=pogoda1, text="Пыщь2")
+        if call.data == "otherosint":
+            keyboard = types.InlineKeyboardMarkup()
+            btn1 = types.InlineKeyboardButton(text="👥 Генератор фейк данных", callback_data="otherosint_1")
+            keyboard.add(btn1)
+            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="⚙️ Выберите нужный вам инструмент.", reply_markup=keyboard)
 
+        if call.data == "otherosint_1":
+            keyboard = types.InlineKeyboardMarkup()
+            btn1 = types.InlineKeyboardButton(text="🧑‍ Женский", callback_data="otherosint_1_1")
+            btn1 = types.InlineKeyboardButton(text="👨‍ Мужской", callback_data="otherosint_1_2")
+            keyboard.add(btn1)
+            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="👥 Генератор фейк данных:n\Выберите нужный вам пол для генерации данных.", reply_markup=keyboard)
 
 bot.polling(none_stop=True)
