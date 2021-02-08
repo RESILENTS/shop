@@ -17,8 +17,23 @@ service.row('ℹ️ FAQ', '📈 Канал')
 
 
 @bot.message_handler(commands=['start'])
+def get_html(url):
+    r = requests.get(url)    # Получаем метод Response
+    r.encoding = 'utf8'      # У меня были проблемы с кодировкой, я задал в ручную
+    return r.text            # Вернем данные объекта text
+
+def get_link(html):
+    soup = BeautifulSoup(html, 'lxml')
+    head = soup.find('div', id='section-content').find_all('a', class_="entry-header")
+    for i in head:
+        link = 'https://3dnews.ru' + i.get('href')
+        heads= i.find('h1').string
+        data = {'head': heads,
+                 'link': link}
+        data = get_link(get_html('https://3dnews.ru/news'))
+
 def welcome(message):
-    bot.send_message(message.chat.id, ('👋🏽 Добро пожаловать, *' + message.from_user.first_name + '.*'), reply_markup=service, parse_mode='Markdown')
+    bot.send_message(message.chat.id, ('👋🏽 Добро пожаловать, *' + message.from_user.first_name + '.*' + data), reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def any_msg(message):
@@ -36,17 +51,6 @@ def any_msg(message):
         
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
-        s=requests.get('https://sinoptik.com.ru/погода-москва')
-        b=bs4.BeautifulSoup(s.text, "html.parser")
-        p3=b.select('.temperature .p3')
-        pogoda1=p3[0].getText()
-        p4=b.select('.temperature .p4')
-        pogoda2=p4[0].getText()
-        p5=b.select('.temperature .p5')
-        pogoda3=p5[0].getText()
-        p6=b.select('.temperature .p6')
-        pogoda4=p6[0].getText()
-    
     if call.message:
         if call.data == "uabtn":
             keyboard = types.InlineKeyboardMarkup()
@@ -54,6 +58,7 @@ def callback_inline(call):
             btn2 = types.InlineKeyboardButton(text="🔍 Поиск по Номеру Телефона", callback_data="test")
             keyboard.add(btn1)
             keyboard.add(btn2)
+            
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="🇺🇦 Все доступные инструменты для поиска нужной вам информации.", reply_markup=keyboard)
             
         if call.data == "test":
