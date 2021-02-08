@@ -30,8 +30,9 @@ def welcome(message):
 			user_log = data[ 'capital' ][ 'longitude' ]
 			user_post = data[ 'capital' ][ 'post' ]
 			user_oper = data[ '0' ][ 'oper' ]
+			print(user_city)
 			
-	bot.send_message(message.chat.id, '6 ' + user_city, reply_markup=service, parse_mode='Markdown')
+	bot.send_message(message.chat.id, '6 7', reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def any_msg(message):
