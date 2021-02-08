@@ -87,7 +87,7 @@ def callback_inline(call):
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="🔍  В данном разделе собраны сервисы для поиска информации по 🇺🇦 *Украине.*\n\nВыберите нужный вам вид поиска.", reply_markup=keyboard, parse_mode='Markdown')
 
         if call.data == "uabtn1_1":
-            uabtn1_1_message = bot.send_message(chat_id=call.message.chat.id, text="🔍 Поиск информации о автомобиле по гос. номеру:\n\nℹ️ Отправь мне номер авто для проверки, пример номера *AA1234BB.*", parse_mode='Markdown')
+            uabtn1_1_message = bot.send_message(chat_id=call.message.chat.id, text="🔍 *Получаем информацию о автомобиле по государственному номеру.*\n\n⚠️ Введите номер автомобиля для получения информации.\n\nℹ Пример номера: *AA6666BI*", parse_mode='Markdown')
             bot.register_next_step_handler(uabtn1_1_message, auto_number_check)
 		
         if call.data == "uabtn1_2":
