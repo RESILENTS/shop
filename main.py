@@ -88,12 +88,12 @@ def callback_inline(call):
 def get_car_plate(message):
 	global auto_number_a
 	auto_number_a = message.text.upper()
+	autoresult = ''
 	bot.register_next_step_handler(message, auto_number_check, autoresult)
 	
-def auto_number_check(message):
+def auto_number_check(self):
     global auto_number_a
     auto_number_a = message.text.upper()
-    autoresult = ''
     response = requests.get('https://fakescreen-3d98a1.eu1.kinto.io/ua?num=' + auto_number_a)
     data = response.json()
     region = data["region"]["name"]
@@ -101,6 +101,7 @@ def auto_number_check(message):
     model = data["model"]
     zametki = data["operations"][0]["notes"]
     data_reg = data["operations"][0]["regAt"]
+
     autoresult = bot.send_message(message.chat.id, "▫️ Марка авто: " +marka+ "\n▫️ Регион: " +region+ "\n▫️ Модель: " +model+ "\n▫️ Заметки: " +zametki+ "\n▫️ Дата последней регистрации: " + data_reg)
         
 bot.polling(none_stop=True)
