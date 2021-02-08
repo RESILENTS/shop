@@ -35,17 +35,12 @@ def any_msg(message):
 	
     if message.text == "🔍 Поиск 🚙":
         global auto_number
+	auto_number = message.text
         marka = ''
         region = ''
         model = ''
         zametki = ''
         data_reg = ''
-        auto_number = message.text
-        bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:" + auto_number)
-	
-def car_ua():
-        global auto_number
-        auto_number = message.text
         response = requests.get('https://fakescreen-3d98a1.eu1.kinto.io/ua?num=CE1234BC')
         data = response.json()
         region = data["region"]["name"]
@@ -53,7 +48,7 @@ def car_ua():
         model = data["model"]
         zametki = data["operations"][0]["notes"]
         data_reg = data["operations"][0]["regAt"]
-	
+        bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:" + data_reg)
         
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
