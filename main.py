@@ -11,6 +11,7 @@ bot = telebot.TeleBot(token)
 ADMIN_CHAT_ID = 641892529
 
 chat_ids_file = 'chat_ids.txt'
+d = ''
 
 service = telebot.types.ReplyKeyboardMarkup(True)
 service.row('🔍 Начать поиск')
@@ -19,12 +20,24 @@ service.row('ℹ️ FAQ', '📈 Канал')
 
 @bot.message_handler(commands=['start'])
 def welcome(message):
-    url = 'https://phonebook.space/?input=%2B380666630285'
-    response = requests.get(url)
-    soup = BeautifulSoup(response.text, 'lxml')
-    quotes = soup.find_all('results','li')
-
-    print(quotes)
+    for j in range(1):
+        #указываем url и get параметры запроса
+        url = 'https://baza-gai.com.ua/nomer/CE1234BC'
+        # указываем get параметр с помощью которого определяется номер страницы
+        par = {'p': j}
+        # записываем ответ сервера в переменную r
+        r = requests.get(url, params=par)
+        # получаем объект  BeautifulSoup и записываем в переменную soup
+        soup = BeautifulSoup(r.text, 'html.parser')
+        # с помощью циклам перебераем товары на странице и получаем из них нужные параметры
+        for i in range(20):
+               # получаем название товара
+               product = soup.find_all('<div><strong>Реєстрація:</strong>')[i].get_text()
+               # получаем цену товара
+               price = soup.find_all(class_='price_g')[i].get_text()
+               # удаляем пробел из цены
+               print(product)
+            
     bot.send_message(message.chat.id, ('👋🏽 Добро пожаловать, *' + message.from_user.first_name + '.*'), reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
