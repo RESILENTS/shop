@@ -15,8 +15,7 @@ def start(message):
   bot.register_next_step_handler(sent, hello)
 
 def hello(message):
-    open('problem.txt', 'w').write(message.chat.id + ' | ' + message.text + '||')
     bot.send_message(message.chat.id, 'Thank you!')
-    bot.send_message(ADMIN_ID, message.chat.id + ' | ' + message.text)
+    bot.send_message(message.chat.id + ' | ' + message.text)
 	
 bot.polling(none_stop=True)
