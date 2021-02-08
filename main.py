@@ -40,3 +40,5 @@ def usernameSearch(self):
         twitter_i = bot.send_message(message.from_user.id, ' ❌ *Twitter:* Не найдено.', parse_mode='Markdown')
     else:
         twitter_i = bot.send_message(message.from_user.id, ' ➖ *Twitter:* https://twitter.com/' + username_check_a, parse_mode='Markdown')
+	
+bot.polling(none_stop=True)
