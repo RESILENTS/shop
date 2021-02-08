@@ -10,30 +10,14 @@ import ssl
 token = '1543845399:AAGMq9rrQW7xSvgAPnXUjpjBNVfw6G1E9HA'
 bot = telebot.TeleBot(token)
 
-username_check_a = ''
+@bot.message_handler(commands=['start'])
+def start(message):
+  sent = bot.send_message(message.chat.id, 'Please describe your problem.')
+  bot.register_next_step_handler(sent, hello)
 
-service = telebot.types.ReplyKeyboardMarkup(True)
-service.row('🔎 OSINT', '⚙️ Инструменты')
-service.row('ℹ️ FAQ', '📈 Канал')
-
-@bot.message_handler(commands = ['start'])
-def welcome(message):	
-	bot.send_message(message.chat.id, '6 7', reply_markup=service, parse_mode='Markdown')
-
-@bot.message_handler(func=lambda message: True, content_types=['text'])
-def handle_text(message):
-    if message.text == '🔎 OSINT':
-        username_check = bot.send_message(message.from_user.id, 'Введите регистрационный номер:')
-        bot.register_next_step_handler(username_check, get_car_model)
-
-def get_car_model(message):
-    global username_check_a
-    username_check_a = message.text.upper()
-    expire = usernameSearch(message.from_user.id)
-    bot.send_message(message.chat.id)
-
-def usernameSearch(self): 
-    global username_check_a
-    bot.send_message(message.chat.id, ' ➖ *Twitter:* https://twitter.com/' + username_check_a, parse_mode='Markdown')
+def hello(message):
+    open('problem.txt', 'w').write(message.chat.id + ' | ' + message.text + '||')
+    bot.send_message(message.chat.id, 'Thank you!')
+    bot.send_message(ADMIN_ID, message.chat.id + ' | ' + message.text)
 	
 bot.polling(none_stop=True)
