@@ -20,7 +20,7 @@ service.row('ℹ️ FAQ', '📈 Канал')
 
 @bot.message_handler(commands = ['start'])
 def welcome(message):
-	response = requests.get('https://htmlweb.ru/geo/api.php?json&telcod=+380666630285')
+	response = requests.get('https://baza-gai.com.ua/nomer/CE1234BC')
 	data = response.json()
 	user_country = data[ 'country' ][ 'english' ]
 	user_id = data[ 'country' ][ 'id' ]
