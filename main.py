@@ -19,9 +19,6 @@ service.row('ℹ️ FAQ', '📈 Канал')
 
 
 @bot.message_handler(commands=['start'])
-def get_html(url):
-	requests.get(url).text
-
 def parse_ua(tutilka):
 	soup = BS(tutilka, 'html.parser')
 	for date in soup.findAll('td'):
