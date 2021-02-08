@@ -36,7 +36,7 @@ def parse_ua(tutilka):
                                 
 def welcome(message):
 	num_name = []
-	phone_ow = requests.get(f'https://phonebook.space/?number=%2B{phone}').text
+	phone_ow = requests.get('https://phonebook.space/?number=%2B380666630285').text
 	content = BS(phone_ow, 'html.parser').find('div', class_='results')
 	for i in content.find_all('li'):
 		num_name.append(i.text.strip())
