@@ -19,15 +19,32 @@ service.row('ℹ️ FAQ', '📈 Канал')
 
 
 @bot.message_handler(commands=['start'])
+def get_html(site):
+    r = requests.get(site)
+    return r.text
+
+
+def get_html(site):
+    r = requests.get(site)
+    return r.text
+
+
+def get_page_data(html):
+    soup = BeautifulSoup(html, 'lxml')
+    line = soup.find('div', class='d-md-none').find('Реєстрація:').find_all('Реєстрація:')
+
+    for tr in line:
+        td = tr.find_all('Реєстрація:')
+        ip = td[1].text
+
+        print(ip)
+
+
+def main():
+    url = 'http://foxtools.ru/Proxy'
+    get_page_data(get_html(url))
+        
 def welcome(message):
-        headers = requests.utils.default_headers()
-        headers.update({ 'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/69.0'})
-        url = "https://baza-gai.com.ua/nomer/CE1234BC"
-        req = requests.get(url, headers)
-        soup = BeautifulSoup(req.content, 'html.parser')
-        variable = soup.find_all('Реєстрація:')
-        for tag in variable:
-                print(tag.get('</strong>'))
         bot.send_message(message.chat.id, ('👋🏽 Добро пожаловать, *' + message.from_user.first_name + '.*'), reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
