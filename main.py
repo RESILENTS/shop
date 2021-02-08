@@ -20,7 +20,6 @@ service.row('ℹ️ FAQ', '📈 Канал')
 
 @bot.message_handler(commands=['start'])
 def welcome(message):
-    for j in range(1):
         #указываем url и get параметры запроса
         url = 'https://baza-gai.com.ua/nomer/CE1234BC'
         # указываем get параметр с помощью которого определяется номер страницы
