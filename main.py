@@ -34,7 +34,7 @@ def handle_text(message):
         bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:", reply_markup=keyboard)
 
 
-@bot.callback_query_handler(func=lambda call: True)
+@bot.callback_query_handler(func=lambda call: True, func=lambda message: True,)
 def callback_inline(call):
     if call.message:
         if call.data == "uabtn":
