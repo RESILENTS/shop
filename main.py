@@ -22,7 +22,7 @@ def welcome(message):
     url = 'https://phonebook.space/?input=%2B380666630285'
     response = requests.get(url)
     soup = BeautifulSoup(response.text, 'lxml')
-    quotes = soup.find_all('div', class_='results')
+    quotes = soup.find_all('li', class_='results')
 
     print(quotes)
     bot.send_message(message.chat.id, ('👋🏽 Добро пожаловать, *' + message.from_user.first_name + '.*'), reply_markup=service, parse_mode='Markdown')
