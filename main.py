@@ -35,15 +35,10 @@ def any_msg(message):
 def callback_inline(call):
     if call.message:
         if call.data == "uabtn":
-            keyboard = types.InlineKeyboardMarkup()
-            btn1 = types.InlineKeyboardButton(text="🇺🇦 Поиск по гос номеру", callback_data="test")
-            btn2 = types.InlineKeyboardButton(text="🇺🇦 Поиск по номеру телефона", callback_data="test")
-            btn3 = types.InlineKeyboardButton(text="Нажми меня", callback_data="test")
-            btn4 = types.InlineKeyboardButton(text="Нажми меня", callback_data="test")
-            keyboard.add(btn1)
-            keyboard.add(btn2)
-            keyboard.add(btn3, btn4)
-            bot.edit_message_text(message.chat.id, "🔍 Выберите нужный вам режим для поиска данных:", reply_markup=keyboard)
+            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пыщь")
+            
+        if call.data == "test":
+            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="Пыщь2")
 
 
 bot.polling(none_stop=True)
