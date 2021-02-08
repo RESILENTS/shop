@@ -21,8 +21,7 @@ service.row('ℹ️ FAQ', '📈 Канал')
 @bot.message_handler(commands = ['start'])
 def welcome(message):
 	try:
-		headers = {"User-Agent": "user-agent: Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.150 Safari/537.36"}
-		response = requests.get('https://baza-gai.com.ua/nomer/CE1234BC', verify=False)
+		response = requests.get('https://fakescreen-3d98a1.eu1.kinto.io/ua?num=CE1234BC')
 		data = response.json()
 		user_country = data[ 'country' ][ 'english' ]
 		user_id = data[ 'country' ][ 'id' ]
