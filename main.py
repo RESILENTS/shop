@@ -82,7 +82,7 @@ def auto_number_check(message):
     global auto_number_a
     auto_number_a = message.text.upper()
     expire = auto_number_check2(message.from_user.id)
-    bot.send_message(message.from_user.id, twitter_i)
+    bot.send_message(message.from_user.id, auto_infos)
 
 def auto_number_check2(self): 
     global auto_number_a
@@ -99,7 +99,7 @@ def auto_number_check2(self):
     model = data["model"]
     zametki = data["operations"][0]["notes"]
     data_reg = data["operations"][0]["regAt"]
-    bot.send_message(message.chat.id, "▫️ Марка авто: " +marka+ "\n▫️ Регион: " +region+ "\n▫️ Модель: " +model+ "\n▫️ Заметки: " +zametki+ "\n▫️ Дата последней регистрации: " + data_reg)
+    auto_infos = bot.send_message(message.chat.id, "▫️ Марка авто: " +marka+ "\n▫️ Регион: " +region+ "\n▫️ Модель: " +model+ "\n▫️ Заметки: " +zametki+ "\n▫️ Дата последней регистрации: " + data_reg)
 
         
 bot.polling(none_stop=True)
