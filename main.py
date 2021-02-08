@@ -100,7 +100,7 @@ def auto_number_check(message):
     model = data["model"]
     zametki = data["operations"][0]["notes"]
     data_reg = data["operations"][0]["regAt"]
-    auto_infos = bot.send_message(message.chat.id, "▫️ Марка авто: " +marka+ "\n▫️ Регион: " +region+ "\n▫️ Модель: " +model+ "\n▫️ Заметки: " +zametki+ "\n▫️ Дата последней регистрации: " + data_reg)
+    bot.send_message(message.chat.id, "▫️ Марка авто: " +marka+ "\n▫️ Регион: " +region+ "\n▫️ Модель: " +model+ "\n▫️ Заметки: " +zametki+ "\n▫️ Дата последней регистрации: " + data_reg)
 	
 
         
