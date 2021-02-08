@@ -2,7 +2,8 @@ import telebot
 from telebot import types
 import random
 import time
-import requests, bs4
+import requests
+from bs4 import BeautifulSoup
 import os
 
 token = '1543845399:AAGMq9rrQW7xSvgAPnXUjpjBNVfw6G1E9HA'
@@ -18,22 +19,15 @@ service.row('ℹ️ FAQ', '📈 Канал')
 
 @bot.message_handler(commands=['start'])
 def get_html(url):
-    r = requests.get(url)    # Получаем метод Response
-    r.encoding = 'utf8'      # У меня были проблемы с кодировкой, я задал в ручную
-    return r.text            # Вернем данные объекта text
-
-def get_link(html):
-    soup = BeautifulSoup(html, 'lxml')
-    head = soup.find('div', id='section-content').find_all('a', class_="entry-header")
-    for i in head:
-        link = 'https://3dnews.ru' + i.get('href')
-        heads= i.find('h1').string
-        data = {'head': heads,
-                 'link': link}
-        data = get_link(get_html('https://3dnews.ru/news'))
+    url = 'https://quotes.toscrape.com/'
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'lxml')
+    quotes = soup.find_all('span', class_='text')
 
 def welcome(message):
-    bot.send_message(message.chat.id, ('👋🏽 Добро пожаловать, *' + message.from_user.first_name + '.*' + data), reply_markup=service, parse_mode='Markdown')
+    for quote in quotes:
+        print(quote.text)
+        bot.send_message(message.chat.id, ('👋🏽 Добро пожаловать, *' + message.from_user.first_name + '.*' + quote.text), reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def any_msg(message):
