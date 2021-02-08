@@ -48,7 +48,7 @@ def callback_inline(call):
         if call.data == "uabtn1_1":
             service1 = telebot.types.ReplyKeyboardMarkup(True)
             service1.row('🔍 Поиск', '🏠 На главную')
-            bot.send_message(chat_id=call.message.chat.id, text="🔍 Поиск информации о автомобиле по гос. номеру:\n\nℹ️ Введите номер авто для проверки, пример номера *AA1234BB*", reply_markup=service1, parse_mode='Markdown')
+            bot.send_message(chat_id=call.message.chat.id, text="🔍 Поиск информации о автомобиле по гос. номеру:\n\nℹ️ Отправь мне номер авто для проверки, пример номера *AA1234BB* и нажмите на кнопку *поиск.*", reply_markup=service1, parse_mode='Markdown')
 	
         if call.data == "otherosint":
             keyboard = types.InlineKeyboardMarkup()
