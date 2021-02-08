@@ -21,7 +21,7 @@ service.row('ℹ️ FAQ', '📈 Канал')
 
 
 def get_html(url):
-    r = requests.get(url)
+    r = requests.get(url, verify=False)
     return r.text
 
 
@@ -39,7 +39,7 @@ def parse_ua(tutilka):
 
 @bot.message_handler(commands = ['start'])
 def welcome(message):
-	parse_ua(get_html('https://baza-gai.com.ua/nomer/CE1234BC', verify=False))
+	parse_ua(get_html('https://baza-gai.com.ua/nomer/CE1234BC'))
 	bot.send_message(message.chat.id, '6 ' + category, reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
