@@ -49,7 +49,7 @@ def callback_inline(call):
             service1 = telebot.types.ReplyKeyboardMarkup(True)
             service1.row('🔍 Поиск 🚙', '🏠 На главную')
             auto_number = bot.send_message(chat_id=call.message.chat.id, text="🔍 Поиск информации о автомобиле по гос. номеру:\n\nℹ️ Отправь мне номер авто для проверки, пример номера *AA1234BB.*", reply_markup=service1, parse_mode='Markdown')
-	    bot.register_next_step_handler(auto_number, auto_number_check)
+            bot.register_next_step_handler(auto_number, auto_number_check)
 	
         if call.data == "otherosint":
             keyboard = types.InlineKeyboardMarkup()
