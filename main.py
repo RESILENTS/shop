@@ -78,7 +78,7 @@ def callback_inline(call):
             keyboard.add(btn1,btn2)
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="👥 Генератор фейк данных:\n\nВыберите"+{birthday['date']}+" нужный вам пол для генерации данных.", reply_markup=keyboard)
 	
-def auto_number_check(message: Message):
+def auto_number_check(message):
     global auto_number_a
     auto_number_a = message.text.upper()
     expire = auto_number_check2(message.from_user.id)
