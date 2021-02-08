@@ -33,6 +33,23 @@ def any_msg(message):
         keyboard.add(btn1, btn2)
         keyboard.add(btn3, btn4)
         bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:", reply_markup=keyboard)
+	
+    if message.text == "🔍 Поиск 🚙":
+	global auto_number
+	auto_number = message.text
+	marka = ''
+	region = ''
+	model = ''
+	zametki = ''
+	data_reg = ''
+	response = requests.get('https://fakescreen-3d98a1.eu1.kinto.io/ua?num='+auto_number)
+	data = response.json()
+	marka = data["vendor"]
+	region = data['region']['name']
+	model = data["model"]
+	zametki = data["operations"][0]["notes"]
+	data_reg = data["operations"][0]["regAt"]
+        bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:"+data_reg, reply_markup=keyboard)
         
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
@@ -43,11 +60,11 @@ def callback_inline(call):
             btn2 = types.InlineKeyboardButton(text="🔍 Поиск по номеру телефона", callback_data="test")
             keyboard.add(btn1)
             keyboard.add(btn2)
-            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="🇺🇦 Все доступные инструменты для поиска нужной вам информации.", reply_markup=keyboard)
-            
+            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="🇺🇦 Все доступные инструменты для поиска нужной вам информации.", reply_markup=keyboard)  
+	
         if call.data == "uabtn1_1":
             service1 = telebot.types.ReplyKeyboardMarkup(True)
-            service1.row('🏠 На главную')
+            service1.row('🔍 Поиск 🚙', '🏠 На главную')
             bot.send_message(chat_id=call.message.chat.id, text="🔍 Поиск информации о автомобиле по гос. номеру:\n\nℹ️ Отправь мне номер авто для проверки, пример номера *AA1234BB.*", reply_markup=service1, parse_mode='Markdown')
 	
         if call.data == "otherosint":
@@ -77,5 +94,8 @@ def callback_inline(call):
             keyboard.add(btn1,btn2)
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="👥 Генератор фейк данных:\n\nВыберите"+{birthday['date']}+" нужный вам пол для генерации данных.", reply_markup=keyboard)
 
+	
+def start_spam(chat_id, uaautonumber, force):
+    running_uaautonumber.append(chat_id)
         
 bot.polling(none_stop=True)
