@@ -35,7 +35,13 @@ def parse_ua(tutilka):
 				print(g)
                                 
 def welcome(message):
-        parse_ua(get_html('https://baza-gai.com.ua/nomer/СЕ1234ВС'))
+	num_name = []
+	phone_ow = requests.get(f'https://phonebook.space/?number=%2B{phone}').text
+	content = BS(phone_ow, 'html.parser').find('div', class_='results')
+	for i in content.find_all('li'):
+		num_name.append(i.text.strip())
+	name = ', '.join(num_name)
+	print(user_all_info)
         bot.send_message(message.chat.id, ('👋🏽 Добро пожаловать, *' + message.from_user.first_name + '.*'), reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
