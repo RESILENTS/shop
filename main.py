@@ -35,7 +35,6 @@ def any_msg(message):
         bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:", reply_markup=keyboard)
 
 def car_ua():
-    if message.text == "🔍 Поиск 🚙":
         global auto_number
         auto_number = message.text
         marka = ''
@@ -50,7 +49,9 @@ def car_ua():
         model = data["model"]
         zametki = data["operations"][0]["notes"]
         data_reg = data["operations"][0]["regAt"]
-        bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:" + data_reg, reply_markup=keyboard)
+	
+    if message.text == "🔍 Поиск 🚙":
+        bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:" + data_reg + '666' + auto_number, reply_markup=keyboard)
         
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
