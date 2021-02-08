@@ -43,7 +43,7 @@ def callback_inline(call):
             keyboard.add(btn1)
             keyboard.add(btn2)
             keyboard.add(btn3, btn4)
-            bot.send_message(message.chat.id, "🔍 Выберите нужный вам режим для поиска данных:", reply_markup=keyboard)
+            bot.edit_message_text(message.chat.id, "🔍 Выберите нужный вам режим для поиска данных:", reply_markup=keyboard)
 
 
 bot.polling(none_stop=True)
