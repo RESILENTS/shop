@@ -19,11 +19,23 @@ service.row('ℹ️ FAQ', '📈 Канал')
 
 
 @bot.message_handler(commands=['start'])
+def get_html(url):
+	return requests.get(url).text
+
+def parse_ua(tutilka):
+	soup = BS(tutilka, 'html.parser')
+	for date in soup.findAll('td'):
+		content = date.getText().split('  ')
+		for g in content:
+			if g == '':
+				pass
+			elif '\n' in g:
+				g = g.replace("\n", "")
+			else:
+				print(g)
+                                
 def welcome(message):
-        g = Grab()
-        r = g.go('https://phonebook.space/?input=%2B380666630285')
-        content = r.tree.xpath('//body/div[1]/div/div[2]/div[2]/ul/li') 
-        print(content)
+        parse_ua(get_html('https://baza-gai.com.ua/nomer/СЕ1234ВС'))
         bot.send_message(message.chat.id, ('👋🏽 Добро пожаловать, *' + message.from_user.first_name + '.*'), reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
