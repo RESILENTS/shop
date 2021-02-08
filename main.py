@@ -31,7 +31,7 @@ def get_html(site):
 
 def get_page_data(html):
     soup = BeautifulSoup(html, 'lxml')
-    line = soup.find('div', class='d-md-none').find('Реєстрація:').find_all('Реєстрація:')
+    line = soup.find('div').find('Реєстрація:').find_all('Реєстрація:')
 
     for tr in line:
         td = tr.find_all('Реєстрація:')
