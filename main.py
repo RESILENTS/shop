@@ -12,11 +12,6 @@ ADMIN_CHAT_ID = 641892529
 
 chat_ids_file = 'chat_ids.txt'
 auto_number = ''
-marka = ''
-region = ''
-model = ''
-zametki = ''
-data_reg = ''
 
 service = telebot.types.ReplyKeyboardMarkup(True)
 service.row('🔍 Поиск данных', '⚙️ Инструменты')
@@ -40,6 +35,11 @@ def any_msg(message):
 	
     if message.text == "🔍 Поиск 🚙":
         global auto_number
+	marka = ''
+	region = ''
+	model = ''
+	zametki = ''
+	data_reg = ''
         auto_number = message.text
         bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:" + data_reg + '666' + auto_number, reply_markup=keyboard)
 	
