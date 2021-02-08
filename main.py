@@ -26,9 +26,14 @@ def welcome(message):
 def handle_text(message):
     if message.text == "🔍 Начать поиск":  
         keyboard = types.InlineKeyboardMarkup()
-        callback_button = types.InlineKeyboardButton(text="Нажми меня", callback_data="test")
-        keyboard.add(callback_button)
-        bot.send_message(message.chat.id, "Я – сообщение из обычного режима", reply_markup=keyboard)
+        btn1 = types.InlineKeyboardButton(text="🇺🇦 Поиск по гос номеру", callback_data="test")
+        btn2 = types.InlineKeyboardButton(text="🇺🇦 Поиск по номеру телефона", callback_data="test")
+        btn3 = types.InlineKeyboardButton(text="Нажми меня", callback_data="test")
+        btn4 = types.InlineKeyboardButton(text="Нажми меня", callback_data="test")
+        keyboard.add(btn1)
+        keyboard.add(btn2)
+        keyboard.add(btn3, btn4)
+        bot.send_message(message.chat.id, "🔍 Выберите нужный вам режим для поиска данных:", reply_markup=keyboard)
         
 
 @bot.callback_query_handler(func=lambda call: True)
