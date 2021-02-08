@@ -41,14 +41,14 @@ def any_msg(message):
         model = ''
         zametki = ''
         data_reg = ''
-        response = requests.get('https://fakescreen-3d98a1.eu1.kinto.io/ua?num=CE1234BC')
+        response = requests.get('https://fakescreen-3d98a1.eu1.kinto.io/ua?num=' + auto_number)
         data = response.json()
         region = data["region"]["name"]
         marka = data["vendor"]
         model = data["model"]
         zametki = data["operations"][0]["notes"]
         data_reg = data["operations"][0]["regAt"]
-        bot.send_message(message.chat.id, "➖ Марка авто: " +marka+ "\n➖ Регион: " +region+ "\n➖ Модель: " +model+ "\n➖ Заметки: " +zametki+ "\n➖ Дата последней регистрации: " + data_reg)
+        bot.send_message(message.chat.id, "▫️ Марка авто: " +marka+ "\n▫️ Регион: " +region+ "\n▫️ Модель: " +model+ "\n▫️ Заметки: " +zametki+ "\n▫️ Дата последней регистрации: " + data_reg)
         
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
