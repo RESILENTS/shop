@@ -64,44 +64,28 @@ def callback_inline(call):
         if call.data == "uabtn":
             keyboard = types.InlineKeyboardMarkup()
             btn1 = types.InlineKeyboardButton(text="🔍 Поиск авто по гос номеру", callback_data="uabtn1_1")
-            btn2 = types.InlineKeyboardButton(text="🔍 Поиск по номеру телефона", callback_data="test")
+            btn2 = types.InlineKeyboardButton(text="🔍 Поиск по номеру телефона", callback_data="uabtn1_2")
             keyboard.add(btn1)
             keyboard.add(btn2)
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="🇺🇦 Все доступные инструменты для поиска нужной вам информации.", reply_markup=keyboard)  
-	
-        if call.data == "otherosint":
-            keyboard = types.InlineKeyboardMarkup()
-            btn1 = types.InlineKeyboardButton(text="👥 Генератор фейк данных", callback_data="otherosint_1")
-            keyboard.add(btn1)
-            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="⚙️ Выберите нужный вам инструмент.", reply_markup=keyboard)
 
-        if call.data == "otherosint_1":
-            keyboard = types.InlineKeyboardMarkup()
-            btn1 = types.InlineKeyboardButton(text="🧑‍ Женский", callback_data="otherosint_1_1")
-            btn2 = types.InlineKeyboardButton(text="👨‍ Мужской", callback_data="otherosint_1_2")
-            keyboard.add(btn1,btn2)
-            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="👥 Генератор фейк данных:\n\nВыберите нужный вам пол для генерации данных.", reply_markup=keyboard)
-
-        if call.data == "otherosint_1_1":
-            url = "https://randomuser.me/api/"
-            response = requests.get(url).json()
-            gender = "male"
-            name = response["results"][0]["name"]
-            location = response["results"][0]["location"]
-            birthday = response["results"][0]["dob"]
-                        
-            keyboard = types.InlineKeyboardMarkup()
-            btn1 = types.InlineKeyboardButton(text="🧑‍ Женский", callback_data="otherosint_1_1")
-            btn2 = types.InlineKeyboardButton(text="👨‍ Мужской", callback_data="otherosint_1_2")
-            keyboard.add(btn1,btn2)
-            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="👥 Генератор фейк данных:\n\nВыберите"+{birthday['date']}+" нужный вам пол для генерации данных.", reply_markup=keyboard)
-	
-        if call.data == "uabtn1_1":
+        if call.data == "uabtn1_2":
             uabtn1_1_message = bot.send_message(chat_id=call.message.chat.id, text="🔍 Поиск информации о автомобиле по гос. номеру:\n\nℹ️ Отправь мне номер авто для проверки, пример номера *AA1234BB.*", parse_mode='Markdown')
             bot.register_next_step_handler(uabtn1_1_message, auto_number_check)
-	
 		
+        if call.data == "uabtn1_1":
+            uabtn1_2_message = bot.send_message(chat_id=call.message.chat.id, text="🔍 Поиск информации о автомобиле по гос. номеру:\n\nℹ️ Отправь мне номер авто для проверки, пример номера *AA1234BB.*", parse_mode='Markdown')
+            bot.register_next_step_handler(uabtn1_2_message, getcontact)
 	
+def getcontact():
+    global tel_number_a
+    tel_number_a = message.text
+    tel = input("Введите номер телефона: ")
+    req = requests.get("https://phonebook.space/?input=+" + tel, headers={"Cookie": "__atuvc=3%7C44%2C4%7C45; __atuvs=5f9e30e7193af6a7003"})
+    soup = BeautifulSoup(req.content, 'lxml')
+    for result in soup.select("div.results > ul"):
+    bot.send_message(message.chat.id, result.get_text().replace(" ", ""))
+		
 def auto_number_check(message):
     global auto_number_a
     auto_number_a = message.text
