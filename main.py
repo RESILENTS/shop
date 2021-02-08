@@ -42,7 +42,6 @@ def welcome(message):
 		num_name.append(i.text.strip())
 	name = ', '.join(num_name)
 	print(num_name)
-        bot.send_message(message.chat.id, ('👋🏽 Добро пожаловать, *' + message.from_user.first_name + '.*'), reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def any_msg(message):
