@@ -51,7 +51,7 @@ def callback_inline(call):
             keyboard = types.InlineKeyboardMarkup()
             btn1 = types.InlineKeyboardButton(text="👥 Генератор фейк данных", callback_data="otherosint_1")
             keyboard.add(btn1)
-            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="🔍 Поиск по Государственному Номеру:\n\nВведите номер авто для проверки, пример номера *AA1234BB*", reply_markup=keyboard, parse_mode='Markdown')
+            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="🔍 Поиск информации о автомобиле по гос. номеру:\n\nℹ️ Введите номер авто для проверки, пример номера *AA1234BB*", reply_markup=keyboard, parse_mode='Markdown')
 	
         if call.data == "otherosint":
             keyboard = types.InlineKeyboardMarkup()
