@@ -26,6 +26,13 @@ def welcome(message):
 def handle_text(message):
     if message.text == "🔍 Начать поиск":  
         keyboard = types.InlineKeyboardMarkup()
+        btn1 = types.InlineKeyboardButton(text="🇺🇦 Украина", callback_data="test")
+        btn2 = types.InlineKeyboardButton(text="🇷🇺 Россия", callback_data="test")
+        keyboard.add(btn1, btn2)
+        bot.send_message(message.chat.id, "🌐 Выберите нужную вам страну для поиска данных:", reply_markup=keyboard)
+        
+    if message.text == "🇺🇦 Украина":  
+        keyboard = types.InlineKeyboardMarkup()
         btn1 = types.InlineKeyboardButton(text="🇺🇦 Поиск по гос номеру", callback_data="test")
         btn2 = types.InlineKeyboardButton(text="🇺🇦 Поиск по номеру телефона", callback_data="test")
         btn3 = types.InlineKeyboardButton(text="Нажми меня", callback_data="test")
