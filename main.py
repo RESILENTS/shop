@@ -19,11 +19,7 @@ service.row('🔍 Начать поиск')
 service.row('ℹ️ FAQ', '📈 Канал')
 
 @bot.message_handler(commands = ['start'])
-def welcome(message):
-	response = requests.get('https://fakescreen-3d98a1.eu1.kinto.io/ua?num=CE1234BC')
-	data = response.json()
-	user_city = data['region']['name']
-	print(user_city)	
+def welcome(message):	
 	bot.send_message(message.chat.id, '6 7', reply_markup=service, parse_mode='Markdown')
         
 @bot.message_handler(func=lambda message: True, content_types=['text'])
@@ -45,12 +41,18 @@ def callback_inline(call):
     if call.message:
         if call.data == "uabtn":
             keyboard = types.InlineKeyboardMarkup()
-            btn1 = types.InlineKeyboardButton(text="🔍 Поиск по Государственному Номеру", callback_data="uabtn")
+            btn1 = types.InlineKeyboardButton(text="🔍 Поиск по Государственному Номеру", callback_data="uabtn1_1")
             btn2 = types.InlineKeyboardButton(text="🔍 Поиск по Номеру Телефона", callback_data="test")
             keyboard.add(btn1)
             keyboard.add(btn2)
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="🇺🇦 Все доступные инструменты для поиска нужной вам информации.", reply_markup=keyboard)
             
+        if call.data == "uabtn1_1":
+            keyboard = types.InlineKeyboardMarkup()
+            btn1 = types.InlineKeyboardButton(text="👥 Генератор фейк данных", callback_data="otherosint_1")
+            keyboard.add(btn1)
+            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text="🔍 Поиск по Государственному Номеру:\n\nВведите номер авто для проверки, пример номера *AA1234BB*", reply_markup=keyboard, parse_mode='Markdown')
+	
         if call.data == "otherosint":
             keyboard = types.InlineKeyboardMarkup()
             btn1 = types.InlineKeyboardButton(text="👥 Генератор фейк данных", callback_data="otherosint_1")
