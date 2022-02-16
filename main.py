@@ -1,6 +1,6 @@
-import​ ​telebot 
-​from​ ​telebot​ ​import​ ​types 
-​import​ ​time​, ​os 
+import​ ​telebot
+​from​ ​telebot​ ​import​ ​types
+​import​ ​time​, ​os
 ​import​ ​requests​ ​as​ ​r 
 ​from​ ​random​ ​import​ ​choice 
   
