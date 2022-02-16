@@ -6,9 +6,8 @@ import requests
 import os
 import ssl
 
-import telepot
-bot = telepot.Bot('5108669453:AAGuW4xE9QjnzHH27YRb_6xsZ5-NGuqpgjQ')
-bot.deleteWebhook()
+token​ ​=​ ​'5108669453:AAGuW4xE9QjnzHH27YRb_6xsZ5-NGuqpgjQ' 
+​bot​ ​=​ ​telebot​.​TeleBot​(​token​)
 
 ADMIN_CHAT_ID = 641892529
 
