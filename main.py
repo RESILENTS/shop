@@ -6,8 +6,10 @@ import requests
 import os
 import ssl
 
-token = '1697698490:AAH0WAjuyAg1TNn12ty1qppRHNX5e4cWP9o'
-bot = telebot.TeleBot(token)
+import telepot
+bot = telepot.Bot('5108669453:AAGuW4xE9QjnzHH27YRb_6xsZ5-NGuqpgjQ')
+bot.deleteWebhook()
+
 ADMIN_CHAT_ID = 641892529
 
 chat_ids_file = 'chat_ids.txt'
