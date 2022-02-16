@@ -1,12 +1,10 @@
-import telebot
-from telebot import types
-import random
-import time
-import requests
-import os
-import ssl
-
-token​ ​=​ "5108669453:AAGuW4xE9QjnzHH27YRb_6xsZ5-NGuqpgjQ" 
+import​ ​telebot 
+​from​ ​telebot​ ​import​ ​types 
+​import​ ​time​, ​os 
+​import​ ​requests​ ​as​ ​r 
+​from​ ​random​ ​import​ ​choice 
+  
+​token​ ​=​ ​'5108669453:AAGuW4xE9QjnzHH27YRb_6xsZ5-NGuqpgjQ' 
 ​bot​ ​=​ ​telebot​.​TeleBot​(​token​)
 
 ADMIN_CHAT_ID = 641892529
@@ -124,5 +122,4 @@ def auto_number_check(message):
     keyboard.add(btn1)
     bot.send_message(message.chat.id, "*ℹ Результат по номеру: 🇺🇦 "+auto_number_a+"*\n\n*▪️ Марка автомобиля:* " +marka+ "\n️*▪️ Регион регестрации:* " +region+ "\n▪️ *Модель автомобиля:* " +model+ "\n*▪️ Информация:* " +zametki+ "\n*▪️ Дата последней регистрации:* " + data_reg, reply_markup=keyboard, parse_mode='Markdown')
         
-if __name__ == '__main__':
-    bot.polling(none_stop=True)
+bot.polling(none_stop=True)
